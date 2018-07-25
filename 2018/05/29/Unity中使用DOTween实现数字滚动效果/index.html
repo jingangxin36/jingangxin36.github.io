@@ -43,7 +43,7 @@
     
     <title>
         
-            完全二叉树的应用 - 图解堆排序算法及代码实现 | 
+            Unity中使用DOTween实现数字滚动效果 | 
         
         jingangxin36
     </title>
@@ -215,7 +215,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="jingangxin36">
-    <meta name="msapplication-starturl" content="https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/">
+    <meta name="msapplication-starturl" content="https://jingangxin36.github.io/2018/05/29/Unity中使用DOTween实现数字滚动效果/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="jingangxin36">
@@ -230,16 +230,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/">
+    <meta property="og:url" content="https://jingangxin36.github.io/2018/05/29/Unity中使用DOTween实现数字滚动效果/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="完全二叉树的应用 - 图解堆排序算法及代码实现 | jingangxin36">
+    <meta property="og:title" content="Unity中使用DOTween实现数字滚动效果 | jingangxin36">
     <meta property="og:image" content="/img/avatar.jpg">
     <meta property="og:description" content="以大多数人的努力程度之低，根本轮不到拼天赋">
     
 
     
-        <meta property="article:published_time" content="Sun May 20 2018 00:57:27 GMT+0800">
-        <meta property="article:modified_time" content="Thu May 31 2018 23:34:37 GMT+0800">
+        <meta property="article:published_time" content="Tue May 29 2018 00:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Thu Jul 26 2018 01:25:44 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -247,7 +247,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html" />
+        <link rel="canonical" href="https://jingangxin36.github.io/2018/05/29/Unity中使用DOTween实现数字滚动效果/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -259,10 +259,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html",
-    "headline": "完全二叉树的应用 - 图解堆排序算法及代码实现",
-    "datePublished": "Sun May 20 2018 00:57:27 GMT+0800",
-    "dateModified": "Thu May 31 2018 23:34:37 GMT+0800",
+    "mainEntityOfPage": "https://jingangxin36.github.io/2018/05/29/Unity中使用DOTween实现数字滚动效果/index.html",
+    "headline": "Unity中使用DOTween实现数字滚动效果",
+    "datePublished": "Tue May 29 2018 00:00:00 GMT+0800",
+    "dateModified": "Thu Jul 26 2018 01:25:44 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Lee Young",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-二叉堆"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 二叉堆</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-重要步骤"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 重要步骤</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-维护堆的性质"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 维护堆的性质</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-建堆"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 建堆</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-堆排序算法"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 堆排序算法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-堆排序的应用"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 堆排序的应用</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-参考"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 参考</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0-实现背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">0. 实现背景:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-最终实现效果图"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. 最终实现效果图:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-DOTween相关术语"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. DOTween相关术语:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-实现方法"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. 实现方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-项目地址"><span class="post-toc-number">5.</span> <span class="post-toc-text">4. 项目地址</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-其它实现效果和方法"><span class="post-toc-number">6.</span> <span class="post-toc-text">5. 其它实现效果和方法:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-参考"><span class="post-toc-number">7.</span> <span class="post-toc-text">6. 参考:</span></a></li></ol>
     </ul>
     
 
@@ -378,7 +378,7 @@
         
     
             <p class="article-headline-p">
-                完全二叉树的应用 - 图解堆排序算法及代码实现
+                Unity中使用DOTween实现数字滚动效果
             </p>
         </div>
 
@@ -397,7 +397,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Lee Young</strong>
-        <span>5月 20, 2018</span>
+        <span>5月 29, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -429,7 +429,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=完全二叉树的应用 - 图解堆排序算法及代码实现&url=https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html&pic=https://jingangxin36.github.io/img/avatar.jpg&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Unity中使用DOTween实现数字滚动效果&url=https://jingangxin36.github.io/2018/05/29/Unity中使用DOTween实现数字滚动效果/index.html&pic=https://jingangxin36.github.io/img/avatar.jpg&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -438,7 +438,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=完全二叉树的应用 - 图解堆排序算法及代码实现&url=https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html&via=Lee Young" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Unity中使用DOTween实现数字滚动效果&url=https://jingangxin36.github.io/2018/05/29/Unity中使用DOTween实现数字滚动效果/index.html&via=Lee Young" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -447,7 +447,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://jingangxin36.github.io/2018/05/29/Unity中使用DOTween实现数字滚动效果/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -456,7 +456,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://jingangxin36.github.io/2018/05/29/Unity中使用DOTween实现数字滚动效果/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -481,62 +481,58 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="1-二叉堆"><a href="#1-二叉堆" class="headerlink" title="1. 二叉堆"></a>1. 二叉堆</h1><p>堆是一个数组A, 它可以被看成一个近似的完全二叉树<br><img src="https://img-blog.csdn.net/20180414220025145?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>以(a)二叉树和(b)数组形式展现的是一个最大堆. 结点上方的数字是它在数组中相应的下标.</p>
-<p>若一个结点下标为i, 可以得到它的父结点, 左孩子和右孩子的下标:</p>
-<ul>
-<li>PARENT($i$)<ul>
-<li><strong>return </strong>  $i / 2$</li>
+        <h2 id="0-实现背景"><a href="#0-实现背景" class="headerlink" title="0. 实现背景:"></a>0. 实现背景:</h2><ul>
+<li>玩家在游戏中获得金币或战力等, 需要明显地显示出数字的变化, 可以采用数字滚动效果</li>
+</ul>
+<h2 id="1-最终实现效果图"><a href="#1-最终实现效果图" class="headerlink" title="1. 最终实现效果图:"></a>1. 最终实现效果图:</h2><p><img src="https://img-blog.csdn.net/2018052900501575?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<h2 id="2-DOTween相关术语"><a href="#2-DOTween相关术语" class="headerlink" title="2. DOTween相关术语:"></a>2. DOTween相关术语:</h2><ul>
+<li><code>Tweener</code><ul>
+<li>一个<code>tween</code>控制value和animates</li>
 </ul>
 </li>
-<li>LEFT($i$):<ul>
-<li><strong>return </strong>  $2i$</li>
+<li><code>Sequence</code><ul>
+<li>一个特殊的<code>tween</code>，并不是控制value，和其它的<code>tween</code>一起成为一个动画组</li>
 </ul>
 </li>
-<li>RIGHT($i$):<ul>
-<li><strong>return </strong>  $2i + 1$</li>
+<li><code>Tween</code><ul>
+<li>一个普通词，既可以表示<code>Tweener</code>也可以表示<code>Sequence</code></li>
+</ul>
+</li>
+<li><code>Nested tween</code><ul>
+<li>一个<code>tween</code>，包含<code>Sequence</code></li>
+</ul>
+</li>
+<li>创建一个<code>Tweener</code>的通用方法<ul>
+<li><a href="javascript:void(0" target="_blank" rel="noopener">static DOTween.To(getter, setter, to, float duration)</a>)<ul>
+<li><code>getter</code>: 处理Tweener返回的值, 可以是<a href="https://blog.csdn.net/jingangxin666/article/details/80382918" target="_blank" rel="noopener">匿名方法</a>或<a href="https://blog.csdn.net/jingangxin666/article/details/80382989" target="_blank" rel="noopener">lambda表达式</a></li>
+<li><code>setter</code>: 设置Tweener的初始值, 可以是匿名方法或lambda表达式</li>
+<li><code>to</code>: Tweener的目标值</li>
+<li><code>duration</code>: Tweener的周期, 数值越小, 动画实现越快</li>
 </ul>
 </li>
 </ul>
-<p><strong>更加快速地计算?</strong></p>
-<ul>
-<li>在大多数计算机中,<code>LEFT</code>过程可以在<strong>一条指令内</strong>(左移1位)计算出$2i$, <code>RIGHT</code>过程可以通过将$i$左移1位并低位加1, <strong>快速计算</strong>出$2i+1$. <code>RIGHT</code>过程可以通过把$i$的值右移1位计算得到$i/2$. 在堆排序的好的实现中, 这三个函数通常是以<code>宏(define)</code>或<code>内联函数(inline)</code>实现的. </li>
+</li>
 </ul>
-<p><strong>注意: 根节点的下标不是0而是1</strong></p>
-<ul>
-<li>所以, 代码中的所有Index都需要考虑减去1, 满足数组的初始下标为0的规律</li>
+<h2 id="3-实现方法"><a href="#3-实现方法" class="headerlink" title="3. 实现方法"></a>3. 实现方法</h2><p>3.1 创建一个<code>Sequence</code>并设置它的<code>SetAutoKill</code>属性为<code>false</code>, 防止它实现一次滚动动画之后就自动销毁.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//声明</span><br><span class="line">private Sequence mScoreSequence;</span><br><span class="line">//函数内初始化</span><br><span class="line">mScoreSequence = DOTween.Sequence();</span><br><span class="line">//函数内设置属性</span><br><span class="line">mScoreSequence.SetAutoKill(false);</span><br></pre></td></tr></table></figure>
+<p>3.2 当数据更新时, 调用该界面负责处理该数据的方法, 此时用新的数据创建一个<code>Tweener</code>, 并加入动画序列中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mScoreSequence.Append(DOTween.To(delegate (float value) &#123;</span><br><span class="line">    //向下取整</span><br><span class="line">    var temp = Math.Floor(value);</span><br><span class="line">    //向Text组件赋值</span><br><span class="line">    currentScoreText.text = temp + &quot;&quot;;</span><br><span class="line">&#125;, mOldScore, newScore, 0.4f));</span><br><span class="line">//将更新后的值记录下来, 用于下一次滚动动画</span><br><span class="line">mOldScore = newScore;</span><br></pre></td></tr></table></figure>
+<h2 id="4-项目地址"><a href="#4-项目地址" class="headerlink" title="4. 项目地址"></a>4. 项目地址</h2><p><a href="https://github.com/jingangxin36/Tetris" target="_blank" rel="noopener"><strong>jingangxin36/Tetris</strong></a></p>
+<h2 id="5-其它实现效果和方法"><a href="#5-其它实现效果和方法" class="headerlink" title="5. 其它实现效果和方法:"></a>5. 其它实现效果和方法:</h2><ul>
+<li>看起来每个数字都在滚动<ul>
+<li><a href="https://hk.saowen.com/a/068f45516c014425fb82a6a057ded44d8ff96a1e7cb48e013c2a9d37f1605f9e" target="_blank" rel="noopener">讓數字變化炫酷起來，數字滾動Text組件[Unity]</a></li>
 </ul>
-<h1 id="2-重要步骤"><a href="#2-重要步骤" class="headerlink" title="2. 重要步骤"></a>2. 重要步骤</h1><ul>
-<li><strong>MaxHeapify</strong>: 负责维护最大堆, 时间复杂度为$O($lg$n)$</li>
-<li><strong>BuildMaxHeap</strong>: 负责从一个无序的输入数据数组中构造最大堆, 时间复杂度为$O(n)$</li>
-<li><strong>HeapSort</strong>: 负责对一个数组进行原址排序, 时间复杂度为$O(n$lg$n)$</li>
+</li>
+<li>定制数字滚动时间和数字变化次数<ul>
+<li>计算新旧数据的差值, </li>
+<li>根据滚动次数来计算每次变化的数据差值</li>
+<li>根据滚动时间和滚动次数计算出单次数据滚动的时间间隔, 往<code>TimerManager</code>(需要另外实现)中添加更新UI数值的计时器</li>
 </ul>
-<h1 id="3-维护堆的性质"><a href="#3-维护堆的性质" class="headerlink" title="3. 维护堆的性质"></a>3. 维护堆的性质</h1><p><code>MaxHeapify(A, i)</code>是用于维护最大堆性质的重要过程. 在调用该函数时, 我们假定根结点为LEFT($i$)和RIGHT($i$)的二叉树都是最大堆. 如果A[$i$]小于其孩子, 则违背了最大堆的性质. <code>MaxHeapify(A, i)</code>通过让A[$i$]的值在最大堆中”逐级下降”, 从而使下标为$i$的跟结点的子树重新遵循最大堆的性质.</p>
-<p><strong>下图展示了<code>MaxHeapify</code>的过程</strong><br><img src="https://img-blog.csdn.net/20180414220101331?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><strong>代码实现为:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 负责维护最大堆</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">private void MaxHeapify(int[] originInts, int rootIndex, int heapSize) &#123;            </span><br><span class="line">    if ((rootIndex &lt;&lt; 1) + 1 &gt; heapSize) return;</span><br><span class="line">    //如果当前结点不是叶子结点</span><br><span class="line">    var maxClildIndex = FindMaxClildIndex(originInts, rootIndex, heapSize);</span><br><span class="line">    //如果根结点满足大顶堆条件, 结束维护大顶堆过程</span><br><span class="line">    if (maxClildIndex == rootIndex) return;</span><br><span class="line">    //如果根结点小于子结点</span><br><span class="line">    Swap(ref originInts[maxClildIndex], ref originInts[rootIndex]);</span><br><span class="line">    //发生替换, 需要检查新的子结点是否满足大顶堆条件</span><br><span class="line">    MaxHeapify(originInts, maxClildIndex, heapSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>思考</strong></p>
-<p>递归调用可能使某些编译器产生低效的代码, 可以用循环控制结构取代递归, 用伪代码重写为:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MAX-HEAPIFY(A, i)</span><br><span class="line">    while true</span><br><span class="line">        left = LEFT(i)</span><br><span class="line">        right = RIGHT(i)</span><br><span class="line">        if left &gt; A.heap-size</span><br><span class="line">	        return</span><br><span class="line">        largest = FIND-MAX-CHILD-INDEX(A, i)</span><br><span class="line">        if largest == i</span><br><span class="line">            return</span><br><span class="line">        exchange A[i] with A[largest]</span><br><span class="line">        i = largest</span><br></pre></td></tr></table></figure>
-<h1 id="4-建堆"><a href="#4-建堆" class="headerlink" title="4. 建堆"></a>4. 建堆</h1><p>我们可以用自底向上的方法利用<code>BuildMaxHeap</code>把一个大小n = A.Length 的数组A[1..n]转换为最大堆. 每一个叶结点都可以看成只包含一个元素的堆(此时无需建立子堆). 过程<code>BuildMaxHeap</code>对树中的其它结点(非叶子结点)都调用一次<code>MaxHeapify</code>.</p>
-<p>我们利用<code>heapSize</code>来表示每一次构成大顶堆时的总结点数(即堆的大小),  堆初始化时, <code>heapSize = A.Length</code></p>
-<p><strong>下图展示了<code>BuildMaxHeap</code>的过程</strong></p>
-<p><img src="https://img-blog.csdn.net/20180414220114393?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><strong>代码实现为:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 负责从一个无序的输入数据数组中构造最大堆</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">private void BuildMaxHeap(int[] originInts, int heapSize) &#123;</span><br><span class="line">    //获得最后一个结点的父结点 -&gt; 需要维护的起始结点</span><br><span class="line">    var currentIndex = (heapSize - 1) &gt;&gt; 1;</span><br><span class="line">    //自底向上建立大顶堆</span><br><span class="line">    while (currentIndex &gt;= 0) &#123;</span><br><span class="line">        MaxHeapify(originInts, currentIndex--, heapSize);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="5-堆排序算法"><a href="#5-堆排序算法" class="headerlink" title="5. 堆排序算法"></a>5. 堆排序算法</h1><p>初始时, 堆排序算法利用<code>BuildMaxHeap</code>将输入的数组A[1..n]建成最大堆. 其中n = A.Length. 因为数组中的最大元素总是在A[1]中, 通过把它与A[n]进行替换, 可以把该元素放到正确的位置. 此时, 需要从堆中去掉该结点(可以通过设置<code>heapSize -= 1</code>来实现), 再将剩下的结点构造成大顶堆(通过调用<code>MaxHeapify(A, 1)</code>)</p>
-<p><strong>下图展示了<code>堆排序算法</code>的过程</strong></p>
-<p><img src="https://img-blog.csdn.net/20180414220127261?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><img src="https://img-blog.csdn.net/20180414220135771?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><strong>代码实现为:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 负责对一个数组进行原址排序</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">public int[] HeapSort(int[] originInts) &#123;</span><br><span class="line">    if (originInts == null || originInts.Length == 0) &#123;</span><br><span class="line">        return originInts;</span><br><span class="line">    &#125;</span><br><span class="line">    //需要排序的堆结点数</span><br><span class="line">    var heapSize = originInts.Length;</span><br><span class="line">    PrintArray(&quot;初始数组&quot;, originInts);</span><br><span class="line">    //构造大顶堆	</span><br><span class="line">    BuildMaxHeap(originInts, heapSize);</span><br><span class="line">    var count = 1;</span><br><span class="line">    while (true) &#123;</span><br><span class="line">        PrintArray(&quot;第&quot; + count++ + &quot;个大顶堆&quot;, originInts);                </span><br><span class="line">        //取出最大的结点放到数组尾部&gt;&gt;Swap(A[1], A[heapSize])</span><br><span class="line">        Swap(ref originInts[0], ref originInts[heapSize-- -1]);</span><br><span class="line">        //如果此时只剩下一个结点, 排序结束</span><br><span class="line">        if (heapSize == 1) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        //维护A[1]大顶堆, 直至heapSize == 1</span><br><span class="line">        MaxHeapify(originInts,0, heapSize);               </span><br><span class="line">    &#125;</span><br><span class="line">    PrintArray(&quot;排序后数组&quot;, originInts);            </span><br><span class="line">    return originInts;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 查看是否满足大顶堆条件</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">/// &lt;returns&gt;返回一个最大的孩子索引或者父结点&lt;/returns&gt;</span><br><span class="line">private int FindMaxClildIndex(int[] originInts, int rootIndex, int heapSize) &#123;</span><br><span class="line">    var leftChildIndex = (rootIndex &lt;&lt; 1) + 1;</span><br><span class="line">    //排除已经排序好的子结点</span><br><span class="line">    if (leftChildIndex &gt; heapSize - 1) &#123;</span><br><span class="line">        return rootIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    var rightChildIndex = (rootIndex &lt;&lt; 1) + 2;</span><br><span class="line">    var maxIndex = leftChildIndex;</span><br><span class="line">    //如果有右孩子, 比较左孩子和右孩子</span><br><span class="line">    if (rightChildIndex &lt;= heapSize - 1) &#123;</span><br><span class="line">        if (originInts[rightChildIndex] &gt; originInts[leftChildIndex]) &#123;</span><br><span class="line">            maxIndex = rightChildIndex;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //比较根结点和最大的孩子</span><br><span class="line">    if (originInts[rootIndex] &gt; originInts[maxIndex]) &#123;</span><br><span class="line">        maxIndex = rootIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    return maxIndex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 负责打印数组</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">private void PrintArray(string info, int[] originInts) &#123;</span><br><span class="line">    Console.Write(info + &quot;: &quot;);</span><br><span class="line">    foreach (var temp in originInts) &#123;</span><br><span class="line">        Console.Write(temp + &quot; &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    Console.WriteLine();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 负责交换两个数字</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">private void Swap(ref int a, ref int b) &#123;</span><br><span class="line">    var temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>输入: { 3, 27, 4, 5, 6, 8 , 13, 46}</code></p>
-<p><strong>运行结果为:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">初始数组: 3 27 4 5 6 8 13 46</span><br><span class="line">第1个大顶堆: 46 27 13 5 6 8 4 3</span><br><span class="line">第2个大顶堆: 27 6 13 5 3 8 4 46</span><br><span class="line">第3个大顶堆: 13 6 8 5 3 4 27 46</span><br><span class="line">第4个大顶堆: 8 6 4 5 3 13 27 46</span><br><span class="line">第5个大顶堆: 6 5 4 3 8 13 27 46</span><br><span class="line">第6个大顶堆: 5 3 4 6 8 13 27 46</span><br><span class="line">第7个大顶堆: 4 3 5 6 8 13 27 46</span><br><span class="line">排序后数组: 3 4 5 6 8 13 27 46</span><br></pre></td></tr></table></figure></p>
-<h1 id="6-堆排序的应用"><a href="#6-堆排序的应用" class="headerlink" title="6. 堆排序的应用"></a>6. 堆排序的应用</h1><ul>
-<li><a href="https://blog.csdn.net/jingangxin666/article/details/79958896" target="_blank" rel="noopener"> 如何基于最大堆实现最大优先队列</a></li>
+</li>
 </ul>
-<h1 id="7-参考"><a href="#7-参考" class="headerlink" title="7. 参考"></a>7. 参考</h1><ul>
-<li><a href="https://book.douban.com/subject/20432061/" target="_blank" rel="noopener">算法导论（原书第3版）</a></li>
+<h2 id="6-参考"><a href="#6-参考" class="headerlink" title="6. 参考:"></a>6. 参考:</h2><ul>
+<li><a href="http://dotween.demigiant.com/documentation.php" target="_blank" rel="noopener">DOTween 官方文档</a></li>
+<li><a href="https://www.cnblogs.com/zhaoqingqing/p/3962424.html" target="_blank" rel="noopener">DOTween 中文文档</a></li>
 </ul>
 
         
@@ -558,7 +554,7 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/05/29/Unity中使用DOTween实现数字滚动效果/" id="post_nav-newer" class="prev-content">
+        <a href="/2018/06/23/Unity-中实用方法的记录/" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -572,7 +568,7 @@
 
     <!-- Next Nav -->
     
-        <a href="/2018/05/20/图解HTTP-1-了解Web及网络基础/" id="post_nav-older" class="next-content">
+        <a href="/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

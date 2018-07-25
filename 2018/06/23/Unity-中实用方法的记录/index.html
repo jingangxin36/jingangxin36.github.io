@@ -43,7 +43,7 @@
     
     <title>
         
-            完全二叉树的应用 - 图解堆排序算法及代码实现 | 
+            Unity 中实用方法的记录 | 
         
         jingangxin36
     </title>
@@ -215,7 +215,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="jingangxin36">
-    <meta name="msapplication-starturl" content="https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/">
+    <meta name="msapplication-starturl" content="https://jingangxin36.github.io/2018/06/23/Unity-中实用方法的记录/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="jingangxin36">
@@ -230,16 +230,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/">
+    <meta property="og:url" content="https://jingangxin36.github.io/2018/06/23/Unity-中实用方法的记录/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="完全二叉树的应用 - 图解堆排序算法及代码实现 | jingangxin36">
+    <meta property="og:title" content="Unity 中实用方法的记录 | jingangxin36">
     <meta property="og:image" content="/img/avatar.jpg">
     <meta property="og:description" content="以大多数人的努力程度之低，根本轮不到拼天赋">
     
 
     
-        <meta property="article:published_time" content="Sun May 20 2018 00:57:27 GMT+0800">
-        <meta property="article:modified_time" content="Thu May 31 2018 23:34:37 GMT+0800">
+        <meta property="article:published_time" content="Sat Jun 23 2018 00:00:00 GMT+0800">
+        <meta property="article:modified_time" content="Thu Jul 26 2018 01:27:08 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -247,7 +247,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html" />
+        <link rel="canonical" href="https://jingangxin36.github.io/2018/06/23/Unity-中实用方法的记录/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -259,10 +259,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html",
-    "headline": "完全二叉树的应用 - 图解堆排序算法及代码实现",
-    "datePublished": "Sun May 20 2018 00:57:27 GMT+0800",
-    "dateModified": "Thu May 31 2018 23:34:37 GMT+0800",
+    "mainEntityOfPage": "https://jingangxin36.github.io/2018/06/23/Unity-中实用方法的记录/index.html",
+    "headline": "Unity 中实用方法的记录",
+    "datePublished": "Sat Jun 23 2018 00:00:00 GMT+0800",
+    "dateModified": "Thu Jul 26 2018 01:27:08 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Lee Young",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-二叉堆"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 二叉堆</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-重要步骤"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 重要步骤</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-维护堆的性质"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 维护堆的性质</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-建堆"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 建堆</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-堆排序算法"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 堆排序算法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-堆排序的应用"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 堆排序的应用</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-参考"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 参考</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取Assets文件夹同级的目录"><span class="post-toc-number">1.</span> <span class="post-toc-text">获取Assets文件夹同级的目录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用Editor进程条"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用Editor进程条</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在编辑器的MenuBar添加按钮"><span class="post-toc-number">3.</span> <span class="post-toc-text">在编辑器的MenuBar添加按钮</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于地址路径的问题"><span class="post-toc-number">4.</span> <span class="post-toc-text">关于地址路径的问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#全路径和绝对路径"><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">全路径和绝对路径</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#斜杠转化为反斜杠"><span class="post-toc-number">4.0.2.</span> <span class="post-toc-text">斜杠转化为反斜杠</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#将日志打印指定文件"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">将日志打印指定文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用计时器"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">使用计时器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取对资源的引用"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">获取对资源的引用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用CompareTag而不是显式字符串比较"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">使用CompareTag而不是显式字符串比较</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -378,7 +378,7 @@
         
     
             <p class="article-headline-p">
-                完全二叉树的应用 - 图解堆排序算法及代码实现
+                Unity 中实用方法的记录
             </p>
         </div>
 
@@ -397,7 +397,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Lee Young</strong>
-        <span>5月 20, 2018</span>
+        <span>6月 23, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -429,7 +429,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=完全二叉树的应用 - 图解堆排序算法及代码实现&url=https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html&pic=https://jingangxin36.github.io/img/avatar.jpg&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Unity 中实用方法的记录&url=https://jingangxin36.github.io/2018/06/23/Unity-中实用方法的记录/index.html&pic=https://jingangxin36.github.io/img/avatar.jpg&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -438,7 +438,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=完全二叉树的应用 - 图解堆排序算法及代码实现&url=https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html&via=Lee Young" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Unity 中实用方法的记录&url=https://jingangxin36.github.io/2018/06/23/Unity-中实用方法的记录/index.html&via=Lee Young" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -447,7 +447,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://jingangxin36.github.io/2018/06/23/Unity-中实用方法的记录/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -456,7 +456,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://jingangxin36.github.io/2018/05/20/完全二叉树的应用-图解堆排序算法及代码实现/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://jingangxin36.github.io/2018/06/23/Unity-中实用方法的记录/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -481,62 +481,53 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="1-二叉堆"><a href="#1-二叉堆" class="headerlink" title="1. 二叉堆"></a>1. 二叉堆</h1><p>堆是一个数组A, 它可以被看成一个近似的完全二叉树<br><img src="https://img-blog.csdn.net/20180414220025145?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p>以(a)二叉树和(b)数组形式展现的是一个最大堆. 结点上方的数字是它在数组中相应的下标.</p>
-<p>若一个结点下标为i, 可以得到它的父结点, 左孩子和右孩子的下标:</p>
+        <h2 id="获取Assets文件夹同级的目录"><a href="#获取Assets文件夹同级的目录" class="headerlink" title="获取Assets文件夹同级的目录"></a>获取Assets文件夹同级的目录</h2><p>我们要读取Assets目录同级的文件夹<code>Assets.diff</code>, 该文件夹的全路径可以这样获得:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//方法一</span><br><span class="line">DirectoryInfo topDir = Directory.GetParent(Application.dataPath);</span><br><span class="line">string diffFilePath = topDir.FullName + &quot;/&quot; + &quot;Assets.diff&quot;;</span><br><span class="line"></span><br><span class="line">//方法二</span><br><span class="line">string diffFilePath = GetParentDirectory(Application.dataPath, 1) + &quot;/&quot; + &quot;Assets.diff&quot;;</span><br></pre></td></tr></table></figure>
+<p>其中<code>diffFilePath</code>即为全路径</p>
+<p><code>GetParentDirectory</code>方法可以获得某路径的n级父目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static string GetParentDirectory(string path, int parentCount)</span><br><span class="line">&#123;</span><br><span class="line">    int index = path.Length;</span><br><span class="line">    while (parentCount &gt; 0 &amp;&amp; index &gt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">        index = path.LastIndexOf(&apos;/&apos;, index - 1, StringComparison.Ordinal);</span><br><span class="line">        --parentCount;</span><br><span class="line">    &#125;</span><br><span class="line">    if (index &lt; 0)&#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    return path.Substring(0, index);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用Editor进程条"><a href="#使用Editor进程条" class="headerlink" title="使用Editor进程条"></a>使用Editor进程条</h2><p>当我们执行时间比较久的进程时(例如遍历Assets目录下所有FBX资源),可以使用<a href="https://docs.unity3d.com/ScriptReference/EditorUtility.html" target="_blank" rel="noopener">EditorUtility</a> 中的进度条来展示进程执行到哪一步了. </p>
+<p>具体代码记录如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//展示进度条</span><br><span class="line">EditorUtility.DisplayProgressBar(&quot;正在检查&quot;, &quot;正在获取文件列表...&quot;, 0.0f);</span><br><span class="line"></span><br><span class="line">var info = string.Format(&quot;&#123;0&#125;/&#123;1&#125;&quot;, tempCount, allCount);</span><br><span class="line">EditorUtility.DisplayProgressBar(&quot;正在检查&quot;, &quot;已检查&quot; + info, (float)tempCount / allCount);</span><br><span class="line"></span><br><span class="line">//最后一定要记得清理掉进度条, 不然它就一直留在界面上啦</span><br><span class="line">EditorUtility.ClearProgressBar();</span><br></pre></td></tr></table></figure>
+<h2 id="在编辑器的MenuBar添加按钮"><a href="#在编辑器的MenuBar添加按钮" class="headerlink" title="在编辑器的MenuBar添加按钮"></a>在编辑器的MenuBar添加按钮</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   [MenuItem(&quot;Art Tools/Mesh检查/1.检查fbx的mesh. 检查类型:【UVs &amp; Colors】&quot;)]</span><br><span class="line">   static void CheckMesh()</span><br><span class="line">   &#123;</span><br><span class="line">       _CheckMesh();</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">private static void _CheckMesh()&#123;</span><br><span class="line">	//do something</span><br></pre></td></tr></table></figure>
+<h2 id="关于地址路径的问题"><a href="#关于地址路径的问题" class="headerlink" title="关于地址路径的问题"></a>关于地址路径的问题</h2><h4 id="全路径和绝对路径"><a href="#全路径和绝对路径" class="headerlink" title="全路径和绝对路径"></a>全路径和绝对路径</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">	//searchPath 是绝对路径</span><br><span class="line">	var searchPath = Application.dataPath;</span><br><span class="line">	</span><br><span class="line">	//获取指定类型的资源</span><br><span class="line">	//得到的是相对Assets目录下的路径</span><br><span class="line">	//例如&quot;Assets\3rd\AniEditorScene\Scene0.prefab&quot;</span><br><span class="line">    public static string[] GetAllFilesNew(string dir, string searchPattern)</span><br><span class="line">    &#123;</span><br><span class="line">        var allFile = Directory.GetFiles(dir, searchPattern, SearchOption.AllDirectories);</span><br><span class="line">        return allFile;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">//需要相对路径</span><br><span class="line">//根据相对路径加载指定类型的物体</span><br><span class="line">var tempModel = AssetDatabase.LoadAssetAtPath&lt;GameObject&gt;(assetPath);</span><br></pre></td></tr></table></figure>
+<h4 id="斜杠转化为反斜杠"><a href="#斜杠转化为反斜杠" class="headerlink" title="斜杠转化为反斜杠"></a>斜杠转化为反斜杠</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//originPath为win平台产生的路径, 例如Assets\Source\Test.fbx</span><br><span class="line">var assetPath = originPath.Replace(&quot;\\&quot;, &quot;/&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="将日志打印指定文件"><a href="#将日志打印指定文件" class="headerlink" title="将日志打印指定文件"></a>将日志打印指定文件</h3><p>假设我们对模型进行资源后处理的时候, 希望看得到处理反馈, 这时可以将每一条反馈打印到指定文件中. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">    private static string _time;</span><br><span class="line">    private static bool _isInit;</span><br><span class="line">    private static string _logFilePath;</span><br><span class="line">    static void InitThings()</span><br><span class="line">    &#123;</span><br><span class="line">        _time = DateTime.Now.ToString(&quot;yyyy_MM_dd_HH_mm_ss&quot;);</span><br><span class="line">        DirectoryInfo topDir = Directory.GetParent(Application.dataPath);</span><br><span class="line">        _logFilePath = topDir.FullName + &quot;/&quot; + &quot;Log.md&quot;;</span><br><span class="line">        File.Create(_logFilePath).Dispose();</span><br><span class="line">        Log(_time);</span><br><span class="line">        _isInit = true;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void Log(string content)</span><br><span class="line">    &#123;</span><br><span class="line">        StreamWriter sw = new StreamWriter(_logFilePath, true);</span><br><span class="line">        //开始写入</span><br><span class="line">        sw.WriteLine(content);</span><br><span class="line">        //清空缓冲区</span><br><span class="line">        sw.Flush();</span><br><span class="line">        //关闭流</span><br><span class="line">        sw.Close();</span><br><span class="line">    &#125;</span><br><span class="line">    void OnPostprocessModel(GameObject input)</span><br><span class="line">    &#123;</span><br><span class="line">	    //do something</span><br><span class="line">        Log(&quot;..需要打印的内容..&quot;);</span><br><span class="line">        //do something</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//*************************************</span><br><span class="line">//批量打印, 创建目录</span><br><span class="line"></span><br><span class="line">    private static string _time;</span><br><span class="line">    private static string _logFilePath;</span><br><span class="line">    static DirectoryInfo _topDir;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    static string InitThings(string title)</span><br><span class="line">    &#123;</span><br><span class="line">        _time = DateTime.Now.ToString(&quot;yyyy_MM_dd_HH_mm_ss&quot;);</span><br><span class="line">        _topDir = Directory.GetParent(Application.dataPath);</span><br><span class="line">        _logFilePath = string.Format(&quot;&#123;0&#125;/&#123;1&#125;&#123;2&#125;.txt&quot;, _topDir.FullName, _time, title);</span><br><span class="line">        File.Create(_logFilePath).Dispose();</span><br><span class="line">        return _logFilePath;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用计时器"><a href="#使用计时器" class="headerlink" title="使用计时器"></a>使用计时器</h3><p>用于计算某个方法执行所使用的时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();</span><br><span class="line"></span><br><span class="line">stopwatch.Start();</span><br><span class="line"></span><br><span class="line">//do something </span><br><span class="line"></span><br><span class="line">stopwatch.Stop();</span><br><span class="line"></span><br><span class="line">Debug.LogFormat(&quot;do something took &#123;0&#125;ms&quot;, stopwatch.ElapsedMilliseconds);</span><br><span class="line"></span><br><span class="line">stopwatch.Reset();</span><br><span class="line"></span><br><span class="line">stopwatch.Start();</span><br><span class="line"></span><br><span class="line">//do something </span><br><span class="line"></span><br><span class="line">stopwatch.Stop();</span><br></pre></td></tr></table></figure>
+<h3 id="获取对资源的引用"><a href="#获取对资源的引用" class="headerlink" title="获取对资源的引用"></a>获取对资源的引用</h3><p>Unity提供了一个API:<a href="https://docs.unity3d.com/ScriptReference/AssetDatabase.GetDependencies.html" target="_blank" rel="noopener"> <code>AssetDatabase.GetDependencies</code></a> , 用于获得资源所依赖的文件, 该方法参数<code>recursive</code> 默认为<code>true</code>, 但是此时对时间的影响很大</p>
+<p>做了个测试, 对Assets目录下的所有<code>prefab</code>查找引用, 参数<code>recursive</code> 分别为<code>true</code>和<code>false</code>, 结果如下图:</p>
+<p><img src="https://img-blog.csdn.net/20180713115212445?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>速度快了几乎15倍, 因此参数<code>recursive</code> 最好为<code>false</code>, 即查找直接引用即可. </p>
+<p>如果想要找到某资源直接或间接引用的某个类型的资源, 可以参数为<code>false</code>, 再利用其它方式进行补充</p>
+<p>为什么要这么折腾呢, 时间优化很重要啊</p>
+<p>项目中为了查找Assets目录所有prefab所引用的animation clip文件, 方案有两个:</p>
+<p>①使用<code>GetDependencies(prefabPath, true)</code>, </p>
 <ul>
-<li>PARENT($i$)<ul>
-<li><strong>return </strong>  $i / 2$</li>
+<li>过滤<code>&quot;.anim&quot;</code>后缀, </li>
+<li><code>&quot;.anim&quot;</code>列表即为所有引用到的animation clip文件</li>
 </ul>
-</li>
-<li>LEFT($i$):<ul>
-<li><strong>return </strong>  $2i$</li>
-</ul>
-</li>
-<li>RIGHT($i$):<ul>
-<li><strong>return </strong>  $2i + 1$</li>
-</ul>
-</li>
-</ul>
-<p><strong>更加快速地计算?</strong></p>
+<p>②使用<code>GetDependencies(prefabPath, false)</code>, </p>
 <ul>
-<li>在大多数计算机中,<code>LEFT</code>过程可以在<strong>一条指令内</strong>(左移1位)计算出$2i$, <code>RIGHT</code>过程可以通过将$i$左移1位并低位加1, <strong>快速计算</strong>出$2i+1$. <code>RIGHT</code>过程可以通过把$i$的值右移1位计算得到$i/2$. 在堆排序的好的实现中, 这三个函数通常是以<code>宏(define)</code>或<code>内联函数(inline)</code>实现的. </li>
+<li>过滤<code>&quot;.anim&quot;</code>,<code>&quot;.controller&quot;</code>, <code>&quot;.overrideController&quot;</code>后缀文件,</li>
+<li>对<code>&quot;.overrideController&quot;</code>文件进行<code>GetDependencies(path, false)</code></li>
+<li>过滤<code>&quot;.anim&quot;</code>, <code>&quot;.controller&quot;</code>后缀文件</li>
+<li>对所有 <code>&quot;.controller&quot;</code>文件进行<code>GetDependencies(path, false)</code></li>
+<li>过滤<code>&quot;.anim&quot;</code>后缀文件</li>
+<li>多次过滤得到的<code>&quot;.anim&quot;</code>列表即为所有引用到的animation clip文件</li>
 </ul>
-<p><strong>注意: 根节点的下标不是0而是1</strong></p>
+<p>经实测, 方法②和①获得的animation clip文件一致, 虽然②看起来比较折腾, 但是时间快了好几倍╮(╯▽╰)╭</p>
+<p><strong>更多:</strong></p>
 <ul>
-<li>所以, 代码中的所有Index都需要考虑减去1, 满足数组的初始下标为0的规律</li>
+<li><a href="https://blog.csdn.net/fdyshlk/article/details/78307864" target="_blank" rel="noopener">Animator Override Controller的使用 </a> </li>
 </ul>
-<h1 id="2-重要步骤"><a href="#2-重要步骤" class="headerlink" title="2. 重要步骤"></a>2. 重要步骤</h1><ul>
-<li><strong>MaxHeapify</strong>: 负责维护最大堆, 时间复杂度为$O($lg$n)$</li>
-<li><strong>BuildMaxHeap</strong>: 负责从一个无序的输入数据数组中构造最大堆, 时间复杂度为$O(n)$</li>
-<li><strong>HeapSort</strong>: 负责对一个数组进行原址排序, 时间复杂度为$O(n$lg$n)$</li>
-</ul>
-<h1 id="3-维护堆的性质"><a href="#3-维护堆的性质" class="headerlink" title="3. 维护堆的性质"></a>3. 维护堆的性质</h1><p><code>MaxHeapify(A, i)</code>是用于维护最大堆性质的重要过程. 在调用该函数时, 我们假定根结点为LEFT($i$)和RIGHT($i$)的二叉树都是最大堆. 如果A[$i$]小于其孩子, 则违背了最大堆的性质. <code>MaxHeapify(A, i)</code>通过让A[$i$]的值在最大堆中”逐级下降”, 从而使下标为$i$的跟结点的子树重新遵循最大堆的性质.</p>
-<p><strong>下图展示了<code>MaxHeapify</code>的过程</strong><br><img src="https://img-blog.csdn.net/20180414220101331?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><strong>代码实现为:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 负责维护最大堆</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">private void MaxHeapify(int[] originInts, int rootIndex, int heapSize) &#123;            </span><br><span class="line">    if ((rootIndex &lt;&lt; 1) + 1 &gt; heapSize) return;</span><br><span class="line">    //如果当前结点不是叶子结点</span><br><span class="line">    var maxClildIndex = FindMaxClildIndex(originInts, rootIndex, heapSize);</span><br><span class="line">    //如果根结点满足大顶堆条件, 结束维护大顶堆过程</span><br><span class="line">    if (maxClildIndex == rootIndex) return;</span><br><span class="line">    //如果根结点小于子结点</span><br><span class="line">    Swap(ref originInts[maxClildIndex], ref originInts[rootIndex]);</span><br><span class="line">    //发生替换, 需要检查新的子结点是否满足大顶堆条件</span><br><span class="line">    MaxHeapify(originInts, maxClildIndex, heapSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>思考</strong></p>
-<p>递归调用可能使某些编译器产生低效的代码, 可以用循环控制结构取代递归, 用伪代码重写为:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MAX-HEAPIFY(A, i)</span><br><span class="line">    while true</span><br><span class="line">        left = LEFT(i)</span><br><span class="line">        right = RIGHT(i)</span><br><span class="line">        if left &gt; A.heap-size</span><br><span class="line">	        return</span><br><span class="line">        largest = FIND-MAX-CHILD-INDEX(A, i)</span><br><span class="line">        if largest == i</span><br><span class="line">            return</span><br><span class="line">        exchange A[i] with A[largest]</span><br><span class="line">        i = largest</span><br></pre></td></tr></table></figure>
-<h1 id="4-建堆"><a href="#4-建堆" class="headerlink" title="4. 建堆"></a>4. 建堆</h1><p>我们可以用自底向上的方法利用<code>BuildMaxHeap</code>把一个大小n = A.Length 的数组A[1..n]转换为最大堆. 每一个叶结点都可以看成只包含一个元素的堆(此时无需建立子堆). 过程<code>BuildMaxHeap</code>对树中的其它结点(非叶子结点)都调用一次<code>MaxHeapify</code>.</p>
-<p>我们利用<code>heapSize</code>来表示每一次构成大顶堆时的总结点数(即堆的大小),  堆初始化时, <code>heapSize = A.Length</code></p>
-<p><strong>下图展示了<code>BuildMaxHeap</code>的过程</strong></p>
-<p><img src="https://img-blog.csdn.net/20180414220114393?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><strong>代码实现为:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 负责从一个无序的输入数据数组中构造最大堆</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">private void BuildMaxHeap(int[] originInts, int heapSize) &#123;</span><br><span class="line">    //获得最后一个结点的父结点 -&gt; 需要维护的起始结点</span><br><span class="line">    var currentIndex = (heapSize - 1) &gt;&gt; 1;</span><br><span class="line">    //自底向上建立大顶堆</span><br><span class="line">    while (currentIndex &gt;= 0) &#123;</span><br><span class="line">        MaxHeapify(originInts, currentIndex--, heapSize);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="5-堆排序算法"><a href="#5-堆排序算法" class="headerlink" title="5. 堆排序算法"></a>5. 堆排序算法</h1><p>初始时, 堆排序算法利用<code>BuildMaxHeap</code>将输入的数组A[1..n]建成最大堆. 其中n = A.Length. 因为数组中的最大元素总是在A[1]中, 通过把它与A[n]进行替换, 可以把该元素放到正确的位置. 此时, 需要从堆中去掉该结点(可以通过设置<code>heapSize -= 1</code>来实现), 再将剩下的结点构造成大顶堆(通过调用<code>MaxHeapify(A, 1)</code>)</p>
-<p><strong>下图展示了<code>堆排序算法</code>的过程</strong></p>
-<p><img src="https://img-blog.csdn.net/20180414220127261?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><img src="https://img-blog.csdn.net/20180414220135771?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
-<p><strong>代码实现为:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 负责对一个数组进行原址排序</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">public int[] HeapSort(int[] originInts) &#123;</span><br><span class="line">    if (originInts == null || originInts.Length == 0) &#123;</span><br><span class="line">        return originInts;</span><br><span class="line">    &#125;</span><br><span class="line">    //需要排序的堆结点数</span><br><span class="line">    var heapSize = originInts.Length;</span><br><span class="line">    PrintArray(&quot;初始数组&quot;, originInts);</span><br><span class="line">    //构造大顶堆	</span><br><span class="line">    BuildMaxHeap(originInts, heapSize);</span><br><span class="line">    var count = 1;</span><br><span class="line">    while (true) &#123;</span><br><span class="line">        PrintArray(&quot;第&quot; + count++ + &quot;个大顶堆&quot;, originInts);                </span><br><span class="line">        //取出最大的结点放到数组尾部&gt;&gt;Swap(A[1], A[heapSize])</span><br><span class="line">        Swap(ref originInts[0], ref originInts[heapSize-- -1]);</span><br><span class="line">        //如果此时只剩下一个结点, 排序结束</span><br><span class="line">        if (heapSize == 1) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        //维护A[1]大顶堆, 直至heapSize == 1</span><br><span class="line">        MaxHeapify(originInts,0, heapSize);               </span><br><span class="line">    &#125;</span><br><span class="line">    PrintArray(&quot;排序后数组&quot;, originInts);            </span><br><span class="line">    return originInts;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 查看是否满足大顶堆条件</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">/// &lt;returns&gt;返回一个最大的孩子索引或者父结点&lt;/returns&gt;</span><br><span class="line">private int FindMaxClildIndex(int[] originInts, int rootIndex, int heapSize) &#123;</span><br><span class="line">    var leftChildIndex = (rootIndex &lt;&lt; 1) + 1;</span><br><span class="line">    //排除已经排序好的子结点</span><br><span class="line">    if (leftChildIndex &gt; heapSize - 1) &#123;</span><br><span class="line">        return rootIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    var rightChildIndex = (rootIndex &lt;&lt; 1) + 2;</span><br><span class="line">    var maxIndex = leftChildIndex;</span><br><span class="line">    //如果有右孩子, 比较左孩子和右孩子</span><br><span class="line">    if (rightChildIndex &lt;= heapSize - 1) &#123;</span><br><span class="line">        if (originInts[rightChildIndex] &gt; originInts[leftChildIndex]) &#123;</span><br><span class="line">            maxIndex = rightChildIndex;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //比较根结点和最大的孩子</span><br><span class="line">    if (originInts[rootIndex] &gt; originInts[maxIndex]) &#123;</span><br><span class="line">        maxIndex = rootIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    return maxIndex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 负责打印数组</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">private void PrintArray(string info, int[] originInts) &#123;</span><br><span class="line">    Console.Write(info + &quot;: &quot;);</span><br><span class="line">    foreach (var temp in originInts) &#123;</span><br><span class="line">        Console.Write(temp + &quot; &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    Console.WriteLine();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 负责交换两个数字</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">private void Swap(ref int a, ref int b) &#123;</span><br><span class="line">    var temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>输入: { 3, 27, 4, 5, 6, 8 , 13, 46}</code></p>
-<p><strong>运行结果为:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">初始数组: 3 27 4 5 6 8 13 46</span><br><span class="line">第1个大顶堆: 46 27 13 5 6 8 4 3</span><br><span class="line">第2个大顶堆: 27 6 13 5 3 8 4 46</span><br><span class="line">第3个大顶堆: 13 6 8 5 3 4 27 46</span><br><span class="line">第4个大顶堆: 8 6 4 5 3 13 27 46</span><br><span class="line">第5个大顶堆: 6 5 4 3 8 13 27 46</span><br><span class="line">第6个大顶堆: 5 3 4 6 8 13 27 46</span><br><span class="line">第7个大顶堆: 4 3 5 6 8 13 27 46</span><br><span class="line">排序后数组: 3 4 5 6 8 13 27 46</span><br></pre></td></tr></table></figure></p>
-<h1 id="6-堆排序的应用"><a href="#6-堆排序的应用" class="headerlink" title="6. 堆排序的应用"></a>6. 堆排序的应用</h1><ul>
-<li><a href="https://blog.csdn.net/jingangxin666/article/details/79958896" target="_blank" rel="noopener"> 如何基于最大堆实现最大优先队列</a></li>
-</ul>
-<h1 id="7-参考"><a href="#7-参考" class="headerlink" title="7. 参考"></a>7. 参考</h1><ul>
-<li><a href="https://book.douban.com/subject/20432061/" target="_blank" rel="noopener">算法导论（原书第3版）</a></li>
+<h3 id="使用CompareTag而不是显式字符串比较"><a href="#使用CompareTag而不是显式字符串比较" class="headerlink" title="使用CompareTag而不是显式字符串比较"></a>使用CompareTag而不是显式字符串比较</h3><p><code>gameObject.tag</code>属性返回一个字符串值, 可用于标识一个或多个游戏对象. 但是, 此属性在每次访问时都会导致托管堆的分配, 因为字符串从Unity原生对象复制到托管C＃字符串。</p>
+<p>我们可以使用<code>gameObject.CompareTag(&quot;Tank&quot;)</code>代替<code>gameObject.tag == &quot;Tank&quot;</code></p>
+<p><strong>更多:</strong></p>
+<ul>
+<li><a href="https://github.com/JetBrains/resharper-unity/wiki/Use-CompareTag-instead-of-explicit-string-comparison" target="_blank" rel="noopener">Use CompareTag instead of explicit string comparison </a> </li>
+<li><a href="https://unity3d.com/cn/learn/tutorials/topics/performance-optimization/optimizing-garbage-collection-unity-games?playlist=44069" target="_blank" rel="noopener">Optimizing garbage collection in Unity gamesn </a> </li>
 </ul>
 
         
@@ -558,7 +549,7 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/05/29/Unity中使用DOTween实现数字滚动效果/" id="post_nav-newer" class="prev-content">
+        <a href="/2018/07/26/C-笔试面试题/" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -572,7 +563,7 @@
 
     <!-- Next Nav -->
     
-        <a href="/2018/05/20/图解HTTP-1-了解Web及网络基础/" id="post_nav-older" class="next-content">
+        <a href="/2018/05/29/Unity中使用DOTween实现数字滚动效果/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
