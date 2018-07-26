@@ -514,10 +514,22 @@
 </li>
 </ul>
 <h2 id="3-实现方法"><a href="#3-实现方法" class="headerlink" title="3. 实现方法"></a>3. 实现方法</h2><p>3.1 创建一个<code>Sequence</code>并设置它的<code>SetAutoKill</code>属性为<code>false</code>, 防止它实现一次滚动动画之后就自动销毁.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//声明</span><br><span class="line">private Sequence mScoreSequence;</span><br><span class="line">//函数内初始化</span><br><span class="line">mScoreSequence = DOTween.Sequence();</span><br><span class="line">//函数内设置属性</span><br><span class="line">mScoreSequence.SetAutoKill(false);</span><br></pre></td></tr></table></figure>
-<p>3.2 当数据更新时, 调用该界面负责处理该数据的方法, 此时用新的数据创建一个<code>Tweener</code>, 并加入动画序列中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mScoreSequence.Append(DOTween.To(delegate (float value) &#123;</span><br><span class="line">    //向下取整</span><br><span class="line">    var temp = Math.Floor(value);</span><br><span class="line">    //向Text组件赋值</span><br><span class="line">    currentScoreText.text = temp + &quot;&quot;;</span><br><span class="line">&#125;, mOldScore, newScore, 0.4f));</span><br><span class="line">//将更新后的值记录下来, 用于下一次滚动动画</span><br><span class="line">mOldScore = newScore;</span><br></pre></td></tr></table></figure>
-<h2 id="4-项目地址"><a href="#4-项目地址" class="headerlink" title="4. 项目地址"></a>4. 项目地址</h2><p><a href="https://github.com/jingangxin36/Tetris" target="_blank" rel="noopener"><strong>jingangxin36/Tetris</strong></a></p>
+<pre><code>//声明
+private Sequence mScoreSequence;
+//函数内初始化
+mScoreSequence = DOTween.Sequence();
+//函数内设置属性
+mScoreSequence.SetAutoKill(false);
+</code></pre><p>3.2 当数据更新时, 调用该界面负责处理该数据的方法, 此时用新的数据创建一个<code>Tweener</code>, 并加入动画序列中</p>
+<pre><code>mScoreSequence.Append(DOTween.To(delegate (float value) {
+    //向下取整
+    var temp = Math.Floor(value);
+    //向Text组件赋值
+    currentScoreText.text = temp + &quot;&quot;;
+}, mOldScore, newScore, 0.4f));
+//将更新后的值记录下来, 用于下一次滚动动画
+mOldScore = newScore;
+</code></pre><h2 id="4-项目地址"><a href="#4-项目地址" class="headerlink" title="4. 项目地址"></a>4. 项目地址</h2><p><a href="https://github.com/jingangxin36/Tetris" target="_blank" rel="noopener"><strong>jingangxin36/Tetris</strong></a></p>
 <h2 id="5-其它实现效果和方法"><a href="#5-其它实现效果和方法" class="headerlink" title="5. 其它实现效果和方法:"></a>5. 其它实现效果和方法:</h2><ul>
 <li>看起来每个数字都在滚动<ul>
 <li><a href="https://hk.saowen.com/a/068f45516c014425fb82a6a057ded44d8ff96a1e7cb48e013c2a9d37f1605f9e" target="_blank" rel="noopener">讓數字變化炫酷起來，數字滾動Text組件[Unity]</a></li>

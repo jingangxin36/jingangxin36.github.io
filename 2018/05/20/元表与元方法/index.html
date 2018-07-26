@@ -483,25 +483,132 @@
     
         <h3 id="算术类的元方法"><a href="#算术类的元方法" class="headerlink" title="算术类的元方法"></a>算术类的元方法</h3><p>对于每一个算术运算符，<code>metatable</code>都有对应的域名与其对应，除了<code>__add</code>、<code>__mul</code>外，还有<code>__sub</code>(减)、<code>__div</code>(除)、<code>__unm</code>(负)、<code>__pow</code>(幂)，我们也可以定义<code>__concat</code>定义连接行为。</p>
 <p>当我们对两个表进行加没有问题，但如果两个操作数有不同的metatable例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = Set.new&#123;1,2,3&#125;</span><br><span class="line"></span><br><span class="line">s = s + 8</span><br></pre></td></tr></table></figure>
-<p>Lua选择<code>metamethod</code>的原则：如果第一个参数存在带有<code>__add</code>域的<code>metatable</code>，Lua使用它作为<code>metamethod</code>，和第二个参数无关；</p>
+<pre><code>s = Set.new{1,2,3}
+
+s = s + 8
+
+</code></pre><p>Lua选择<code>metamethod</code>的原则：如果第一个参数存在带有<code>__add</code>域的<code>metatable</code>，Lua使用它作为<code>metamethod</code>，和第二个参数无关；</p>
 <p>否则第二个参数存在带有<code>__add</code>域的<code>metatable</code>，Lua使用它作为<code>metamethod</code>否则报错。</p>
 <h3 id="关系类的元方法"><a href="#关系类的元方法" class="headerlink" title="关系类的元方法"></a>关系类的元方法</h3><p>元表也允许我们指定操作符的含义：<code>__eq</code>（等于），<code>__lt</code>（小于），和<code>__le</code>（小于等于）给关系运算符赋予特殊的含义。对剩下的三个关系运算符没有专门的元方法，因为Lua将<code>a ~= b</code>转换为<code>not (a == b)</code>；<code>a &gt; b</code>转换为<code>b &lt; a</code>；<code>a &gt;= b</code>转换为 <code>b &lt;= a</code>。</p>
-<p>我们将<code>__le</code>和<code>__lt</code>的实现分开:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">Set.mt.__le = function (a,b)    -- set containment</span><br><span class="line"></span><br><span class="line">    for k in pairs(a) do</span><br><span class="line"></span><br><span class="line">       if not b[k] then return false end</span><br><span class="line"></span><br><span class="line">    end</span><br><span class="line"></span><br><span class="line">    return true</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"> -- 我们通过集合的包含来定义集合相等：</span><br><span class="line"></span><br><span class="line">Set.mt.__lt = function (a,b)</span><br><span class="line"></span><br><span class="line">    return a &lt;= b and not (b &lt;= a)</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">Set.mt.__eq = function (a,b)</span><br><span class="line"></span><br><span class="line">    return a &lt;= b and b &lt;= a</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">-- 有了上面的定义之后，现在我们就可以来比较集合了：</span><br><span class="line"></span><br><span class="line">s1 = Set.new&#123;2, 4&#125;</span><br><span class="line"></span><br><span class="line">s2 = Set.new&#123;4, 10, 2&#125;</span><br><span class="line"></span><br><span class="line">print(s1 &lt;= s2)          --&gt; true</span><br><span class="line"></span><br><span class="line">print(s1 &lt; s2)           --&gt; true</span><br><span class="line"></span><br><span class="line">print(s1 &gt;= s1)          --&gt; true</span><br><span class="line"></span><br><span class="line">print(s1 &gt; s1)           --&gt; false</span><br><span class="line"></span><br><span class="line">print(s1 == s2 * s1)     --&gt; true</span><br></pre></td></tr></table></figure></p>
-<h3 id="库定义的元方法"><a href="#库定义的元方法" class="headerlink" title="库定义的元方法"></a>库定义的元方法</h3><p><code>tostring</code>以简单的格式表示出table：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&#123;&#125;)     --&gt; table: 0x8062ac0</span><br></pre></td></tr></table></figure>
-<p>（注意：<code>print</code>函数总是调用<code>tostring</code>来格式化它的输出）。然而当格式化一个对象的时候，<code>tostring</code>会首先检查对象是否存在一个带有<code>__tostring</code>域的<code>metatable</code>。如果存在则以对象作为参数调用对应的函数来完成格式化，返回的结果即为<code>tostring</code>的结果。</p>
+<p>我们将<code>__le</code>和<code>__lt</code>的实现分开:</p>
+<pre><code>Set.mt.__le = function (a,b)    -- set containment
+
+    for k in pairs(a) do
+
+       if not b[k] then return false end
+
+    end
+
+    return true
+
+end
+
+ -- 我们通过集合的包含来定义集合相等：
+
+Set.mt.__lt = function (a,b)
+
+    return a &lt;= b and not (b &lt;= a)
+
+end
+
+Set.mt.__eq = function (a,b)
+
+    return a &lt;= b and b &lt;= a
+
+end
+
+-- 有了上面的定义之后，现在我们就可以来比较集合了：
+
+s1 = Set.new{2, 4}
+
+s2 = Set.new{4, 10, 2}
+
+print(s1 &lt;= s2)          --&gt; true
+
+print(s1 &lt; s2)           --&gt; true
+
+print(s1 &gt;= s1)          --&gt; true
+
+print(s1 &gt; s1)           --&gt; false
+
+print(s1 == s2 * s1)     --&gt; true
+
+</code></pre><h3 id="库定义的元方法"><a href="#库定义的元方法" class="headerlink" title="库定义的元方法"></a>库定义的元方法</h3><p><code>tostring</code>以简单的格式表示出table：</p>
+<pre><code>print({})     --&gt; table: 0x8062ac0
+
+</code></pre><p>（注意：<code>print</code>函数总是调用<code>tostring</code>来格式化它的输出）。然而当格式化一个对象的时候，<code>tostring</code>会首先检查对象是否存在一个带有<code>__tostring</code>域的<code>metatable</code>。如果存在则以对象作为参数调用对应的函数来完成格式化，返回的结果即为<code>tostring</code>的结果。</p>
 <p>在我们集合的例子中我们已经定义了一个函数来将集合转换成字符串打印出来。因此，我们只需要将集合的<code></code>metatable<code>的</code>__tostring`域调用我们定义的打印函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set.mt.__tostring = Set.tostring</span><br></pre></td></tr></table></figure>
-<p>这样，不管什么时候我们调用<code>print</code>打印一个集合，<code>print</code>都会自动调用<code>tostring</code>，而<code>tostring</code>则会调用<code>Set.tostring</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s1 = Set.new&#123;10, 4, 5&#125;</span><br><span class="line"></span><br><span class="line">print(s1)     --&gt; &#123;4, 5, 10&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="table访问的元方法"><a href="#table访问的元方法" class="headerlink" title="table访问的元方法"></a>table访问的元方法</h3><p><code>__index</code></p>
+<pre><code>Set.mt.__tostring = Set.tostring
+
+</code></pre><p>这样，不管什么时候我们调用<code>print</code>打印一个集合，<code>print</code>都会自动调用<code>tostring</code>，而<code>tostring</code>则会调用<code>Set.tostring</code>：</p>
+<pre><code>s1 = Set.new{10, 4, 5}
+
+print(s1)     --&gt; {4, 5, 10}
+
+</code></pre><h3 id="table访问的元方法"><a href="#table访问的元方法" class="headerlink" title="table访问的元方法"></a>table访问的元方法</h3><p><code>__index</code></p>
 <p>当我们访问一个表的不存在的域，返回结果为<code>nil</code>，这是正确的，但并不一定正确。实际上，这种访问触发lua解释器去查找<code>__index</code>元方法：如果不存在，返回结果为<code>nil</code>；如果存在则由<code>__index</code> 元方法返回结果。</p>
 <p>当我们想不通过调用<code>__index</code> 元方法来访问一个表，我们可以使用<code>rawget</code>函数。<code>Rawget(t,i)</code>的调用以<code>raw access</code>方式访问表。这种访问方式不会使你的代码变快（the overhead of a function call kills any gain you could have），但有些时候我们需要他，在后面我们将会看到。</p>
 <p><code>_newindex</code></p>
 <p><code>_newindex</code>元方法用来对表更新，<code>__index</code>则用来对表访问。当你给表的一个缺少的域赋值，解释器就会查找<code>__newindex</code>元方法：如果存在则调用这个函数而不进行赋值操作。像<code>__index</code>一样，如果元方法是一个表，解释器对指定的那个表，而不是原始的表进行赋值操作。另外，有一个<code>raw</code>函数可以绕过元方法：调用<code>rawset(t,k,v)</code>不掉用任何元方法对表t的k域赋值为v。<code>__index</code>和<code>__newindex</code> 元方法的混合使用提供了强大的结构：从只读表到面向对象编程的带有继承默认值的表。</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">-- Point.lua</span><br><span class="line"></span><br><span class="line">local point = &#123;&#125;</span><br><span class="line"></span><br><span class="line">local mt = &#123;&#125;</span><br><span class="line"></span><br><span class="line">--重定义+运算</span><br><span class="line">function mt.__add(p1, p2)</span><br><span class="line">	return point.new(p1.x + p2.x, p1.y + p2.y, p1.z + p2.z)</span><br><span class="line">end</span><br><span class="line">--重定义-运算</span><br><span class="line">function mt.__sub(p1, p2)</span><br><span class="line">	return point.new(p1.x - p2.x, p1.y - p2.y, p1.z - p2.z)</span><br><span class="line">end</span><br><span class="line">--重定义==运算</span><br><span class="line">function mt.__eq(p1, p2)</span><br><span class="line">	return p1.x == p2.x and p1.y == p2.y and p1.z == p2.z</span><br><span class="line">end</span><br><span class="line">--返回包含 x 和 y 坐标的值的字符串</span><br><span class="line">function mt.__tostring(p)</span><br><span class="line">	return string.format(&quot;[Point (%f, %f, %f)]&quot;, p.x, p.y, p.z)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------- </span><br><span class="line"></span><br><span class="line">--创建一个新点</span><br><span class="line">function point.new(x, y, z)</span><br><span class="line">	local p = &#123;x=0, y=0, z=0&#125;</span><br><span class="line">	setmetatable(p, mt)</span><br><span class="line">	if type(x) == &quot;number&quot; then p.x = x end</span><br><span class="line">	if type(y) == &quot;number&quot; then p.y = y end</span><br><span class="line">	if type(z) == &quot;number&quot; then p.z = z end</span><br><span class="line"></span><br><span class="line">	return p</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">--创建此 Point 对象的副本</span><br><span class="line">function point.clone(p)</span><br><span class="line">	return point.new(p.x, p.y, p.z)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">--[静态] 返回 p1 和 p2 之间的距离</span><br><span class="line">function point.Distance2D(p1, p2)</span><br><span class="line">	return math.sqrt((p1.x - p2.x)^2 + (p1.z - p2.z)^2)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">--[静态] 返回 p1 和 p2 之间的距离的平方</span><br><span class="line">function point.Distance2DSquare(p1, p2)</span><br><span class="line">	return (p1.x - p2.x)^2 + (p1.z - p2.z)^2</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">--[静态] 返回 p1 和 p2 之间的距离</span><br><span class="line">function point.Distance(p1, p2)</span><br><span class="line">	return math.sqrt((p1.x - p2.x)^2 + (p1.y - p2.y)^2 + (p1.z - p2.z)^2)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">return point</span><br></pre></td></tr></table></figure>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><pre><code>-- Point.lua
 
+local point = {}
+
+local mt = {}
+
+--重定义+运算
+function mt.__add(p1, p2)
+    return point.new(p1.x + p2.x, p1.y + p2.y, p1.z + p2.z)
+end
+--重定义-运算
+function mt.__sub(p1, p2)
+    return point.new(p1.x - p2.x, p1.y - p2.y, p1.z - p2.z)
+end
+--重定义==运算
+function mt.__eq(p1, p2)
+    return p1.x == p2.x and p1.y == p2.y and p1.z == p2.z
+end
+--返回包含 x 和 y 坐标的值的字符串
+function mt.__tostring(p)
+    return string.format(&quot;[Point (%f, %f, %f)]&quot;, p.x, p.y, p.z)
+end
+
+--------------------------------------------------------------- 
+
+--创建一个新点
+function point.new(x, y, z)
+    local p = {x=0, y=0, z=0}
+    setmetatable(p, mt)
+    if type(x) == &quot;number&quot; then p.x = x end
+    if type(y) == &quot;number&quot; then p.y = y end
+    if type(z) == &quot;number&quot; then p.z = z end
+
+    return p
+end
+
+--创建此 Point 对象的副本
+function point.clone(p)
+    return point.new(p.x, p.y, p.z)
+end
+
+--[静态] 返回 p1 和 p2 之间的距离
+function point.Distance2D(p1, p2)
+    return math.sqrt((p1.x - p2.x)^2 + (p1.z - p2.z)^2)
+end
+
+--[静态] 返回 p1 和 p2 之间的距离的平方
+function point.Distance2DSquare(p1, p2)
+    return (p1.x - p2.x)^2 + (p1.z - p2.z)^2
+end
+
+--[静态] 返回 p1 和 p2 之间的距离
+function point.Distance(p1, p2)
+    return math.sqrt((p1.x - p2.x)^2 + (p1.y - p2.y)^2 + (p1.z - p2.z)^2)
+end
+
+return point
+
+</code></pre>
         
     
 

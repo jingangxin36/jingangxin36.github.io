@@ -513,12 +513,32 @@
 </ul>
 </li>
 <li><p><code>UIPanelType.json</code>:  保存这个工程所有的UI面板类型及其相应的prefab的路径, 此时主要该文件和prefab文件都需要位于<code>Resources</code>文件夹路径下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;infoList&quot;:</span><br><span class="line">		[</span><br><span class="line">            &#123;&quot;panelTypeString&quot;:&quot;ALERT_PANEL&quot;,</span><br><span class="line">            &quot;path&quot;:&quot;AlertPanel&quot;&#125;,</span><br><span class="line"></span><br><span class="line">            &#123;&quot;panelTypeString&quot;:&quot;CONNECT_PANEL&quot;,</span><br><span class="line">            &quot;path&quot;:&quot;ConnectPanel&quot;&#125;,</span><br><span class="line"></span><br><span class="line">            &#123;&quot;panelTypeString&quot;:&quot;HOME_PANEL&quot;,</span><br><span class="line">            &quot;path&quot;:&quot;HomePanel&quot;&#125;,</span><br><span class="line"></span><br><span class="line">            &#123;&quot;panelTypeString&quot;:&quot;WELCOME_PANEL&quot;,</span><br><span class="line">            &quot;path&quot;:&quot;WelcomePanel&quot;&#125;	</span><br><span class="line">		]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​</p>
+<pre><code>{
+    &quot;infoList&quot;:
+        [
+            {&quot;panelTypeString&quot;:&quot;ALERT_PANEL&quot;,
+            &quot;path&quot;:&quot;AlertPanel&quot;},
+
+            {&quot;panelTypeString&quot;:&quot;CONNECT_PANEL&quot;,
+            &quot;path&quot;:&quot;ConnectPanel&quot;},
+
+            {&quot;panelTypeString&quot;:&quot;HOME_PANEL&quot;,
+            &quot;path&quot;:&quot;HomePanel&quot;},
+
+            {&quot;panelTypeString&quot;:&quot;WELCOME_PANEL&quot;,
+            &quot;path&quot;:&quot;WelcomePanel&quot;}    
+        ]
+}
+</code></pre><p>​</p>
 </li>
 <li><p><code>UIPanelType.cs</code>: 保存这个工程所有的UI面板类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public enum UIPanelType &#123;</span><br><span class="line">    ALERT_PANEL,</span><br><span class="line">    CONNECT_PANEL,</span><br><span class="line">    HOME_PANEL,</span><br><span class="line">    WELCOME_PANEL</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​</p>
+<pre><code>public enum UIPanelType {
+    ALERT_PANEL,
+    CONNECT_PANEL,
+    HOME_PANEL,
+    WELCOME_PANEL
+}
+</code></pre><p>​</p>
 </li>
 </ul>
 <h3 id="开发UIManager解析面板信息Json"><a href="#开发UIManager解析面板信息Json" class="headerlink" title="开发UIManager解析面板信息Json"></a>开发UIManager解析面板信息Json</h3><ul>
@@ -543,10 +563,42 @@
 </tbody>
 </table>
 <p>注意json中的key值和所对应的unity类中的字段名要保持一致</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[Serializable]</span><br><span class="line">public class UIPanelInformation : ISerializationCallbackReceiver &#123;</span><br><span class="line">    [NonSerialized]</span><br><span class="line">    public UIPanelType panelType;</span><br><span class="line">    public string panelTypeString;</span><br><span class="line">    public string path;</span><br><span class="line"></span><br><span class="line">    public void OnAfterDeserialize() &#123;</span><br><span class="line">        //反序列化之后, 将一个或多个枚举字符串表示(panelTypeString)转换成等效的枚举对象(UIPanelType)。</span><br><span class="line">        UIPanelType type = (UIPanelType)Enum.Parse(typeof(UIPanelType), panelTypeString);</span><br><span class="line">        panelType = type;</span><br><span class="line">    &#125;</span><br><span class="line">    public void OnBeforeSerialize() &#123;</span><br><span class="line">        //啥都不用做</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[Serializable]</span><br><span class="line">public class UIPanelTypeJson &#123;</span><br><span class="line">	//用来储存json对象所对应的类的列表</span><br><span class="line">	public List&lt;UIPanelInformation&gt; infoList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在<code>UIManager.cs</code>中 :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private void ParseUIPanelTypeJson() &#123;</span><br><span class="line">    mPanelPathDictionary = new Dictionary&lt;UIPanelType, string&gt;();</span><br><span class="line">    TextAsset textAsset = Resources.Load&lt;TextAsset&gt;(&quot;Demo1/UIPanelType&quot;);</span><br><span class="line">    //将json对象转化为UIPanelTypeJson类</span><br><span class="line">    UIPanelTypeJson jsonObject = JsonUtility.FromJson&lt;UIPanelTypeJson&gt;(textAsset.text);</span><br><span class="line">    foreach (UIPanelInformation info in jsonObject.infoList) &#123;</span><br><span class="line">        mPanelPathDictionary.Add(info.panelType, info.path);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="开发BasePanel面板基类"><a href="#开发BasePanel面板基类" class="headerlink" title="开发BasePanel面板基类"></a>开发BasePanel面板基类</h3><p><img src="https://img-blog.csdn.net/20180426133949185?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<pre><code>
+[Serializable]
+public class UIPanelInformation : ISerializationCallbackReceiver {
+    [NonSerialized]
+    public UIPanelType panelType;
+    public string panelTypeString;
+    public string path;
+
+    public void OnAfterDeserialize() {
+        //反序列化之后, 将一个或多个枚举字符串表示(panelTypeString)转换成等效的枚举对象(UIPanelType)。
+        UIPanelType type = (UIPanelType)Enum.Parse(typeof(UIPanelType), panelTypeString);
+        panelType = type;
+    }
+    public void OnBeforeSerialize() {
+        //啥都不用做
+    }
+}
+
+[Serializable]
+public class UIPanelTypeJson {
+    //用来储存json对象所对应的类的列表
+    public List&lt;UIPanelInformation&gt; infoList;
+}
+
+
+</code></pre><p>在<code>UIManager.cs</code>中 :</p>
+<pre><code>    private void ParseUIPanelTypeJson() {
+        mPanelPathDictionary = new Dictionary&lt;UIPanelType, string&gt;();
+        TextAsset textAsset = Resources.Load&lt;TextAsset&gt;(&quot;Demo1/UIPanelType&quot;);
+        //将json对象转化为UIPanelTypeJson类
+        UIPanelTypeJson jsonObject = JsonUtility.FromJson&lt;UIPanelTypeJson&gt;(textAsset.text);
+        foreach (UIPanelInformation info in jsonObject.infoList) {
+            mPanelPathDictionary.Add(info.panelType, info.path);
+        }
+    }
+</code></pre><h3 id="开发BasePanel面板基类"><a href="#开发BasePanel面板基类" class="headerlink" title="开发BasePanel面板基类"></a>开发BasePanel面板基类</h3><p><img src="https://img-blog.csdn.net/20180426133949185?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <p><img src="https://img-blog.csdn.net/2018042613404166?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <p><strong>为什么使用<code>virtual</code>关键字而不是<code>abstract</code>关键字来修饰?</strong></p>
 <ul>
@@ -590,8 +642,23 @@
 </li>
 <li>相关代码为: </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[RequireComponent(typeof(CanvasGroup))] </span><br><span class="line">public class BasePanel : MonoBehaviour &#123;</span><br><span class="line">    protected CanvasGroup canvasGroup;</span><br><span class="line">    protected virtual void Awake() &#123;	</span><br><span class="line">        canvasGroup = gameObject.GetComponent&lt;CanvasGroup&gt;();</span><br><span class="line">        </span><br><span class="line">        //其它代码</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private void SetPanelInteractable(bool isInteractable) &#123;</span><br><span class="line">    	if (isInteractable ^ canvasGroup.interactable) canvasGroup.interactable = isInteractable;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //其它代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​</p>
+<pre><code>[RequireComponent(typeof(CanvasGroup))] 
+public class BasePanel : MonoBehaviour {
+    protected CanvasGroup canvasGroup;
+    protected virtual void Awake() {    
+        canvasGroup = gameObject.GetComponent&lt;CanvasGroup&gt;();
+
+        //其它代码
+    }
+
+    private void SetPanelInteractable(bool isInteractable) {
+        if (isInteractable ^ canvasGroup.interactable) canvasGroup.interactable = isInteractable;
+    }
+
+    //其它代码
+}
+
+</code></pre><p>​</p>
 </li>
 </ul>
 <h4 id="在游戏运行中如何使得新创建的面板显示在最上面-如何修改UGUI的显示层级？"><a href="#在游戏运行中如何使得新创建的面板显示在最上面-如何修改UGUI的显示层级？" class="headerlink" title="在游戏运行中如何使得新创建的面板显示在最上面?如何修改UGUI的显示层级？"></a>在游戏运行中如何使得新创建的面板显示在最上面?如何修改UGUI的显示层级？</h4><ul>
@@ -604,8 +671,8 @@
 </ul>
 </li>
 <li><p>参考解决方案: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gameObject.transform.SetAsLastSibling();</span><br></pre></td></tr></table></figure>
-</li>
+<pre><code>        gameObject.transform.SetAsLastSibling();
+</code></pre></li>
 <li><p>留意Hierarchy窗口</p>
 <p><img src="https://img-blog.csdn.net/20180426134334320?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 </li>
@@ -636,10 +703,32 @@
 </ul>
 <p><img src="https://img-blog.csdn.net/20180426134451119?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <h4 id="如果需要切换场景呢"><a href="#如果需要切换场景呢" class="headerlink" title="如果需要切换场景呢?"></a>如果需要切换场景呢?</h4><p>切换时当前场景内的物体都会被清空, 但我们可以通过<code>DontDestroyOnLoad</code>来保留<code>UIManager</code>单例, 同时将 <code>mPanelPool</code>和<code>mPanelStack</code>清空就好了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 实例化UIManager</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">/// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">private static UIManager GetInstance() &#123;</span><br><span class="line">    if (sInstanceUiManager == null) &#123;</span><br><span class="line">        var go = new GameObject(&quot;UIManager&quot;);</span><br><span class="line">        sInstanceUiManager = go.AddComponent&lt;UIManager&gt;();</span><br><span class="line">        //如果有场景切换</span><br><span class="line">        DontDestroyOnLoad(go);</span><br><span class="line">    &#125;</span><br><span class="line">    return sInstanceUiManager;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 切换场景前,调用该方法来清空当前场景的数据</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">public void RefreshDataOnSwitchScene() &#123;</span><br><span class="line">    mPanelPathDictionary.Clear();</span><br><span class="line">    mPanelStack.Clear();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如何切换场景?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UIManager.Instance.RefreshDataOnSwitchScene();</span><br><span class="line">SceneManager.LoadScene(&quot;NewScene&quot;);</span><br></pre></td></tr></table></figure>
-<h3 id="个人博客"><a href="#个人博客" class="headerlink" title="个人博客"></a>个人博客</h3><p><a href="https://blog.csdn.net/jingangxin666" target="_blank" rel="noopener">jingangxin36</a></p>
+<pre><code>    /// &lt;summary&gt;
+    /// 实例化UIManager
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    private static UIManager GetInstance() {
+        if (sInstanceUiManager == null) {
+            var go = new GameObject(&quot;UIManager&quot;);
+            sInstanceUiManager = go.AddComponent&lt;UIManager&gt;();
+            //如果有场景切换
+            DontDestroyOnLoad(go);
+        }
+        return sInstanceUiManager;
+    }
+
+    /// &lt;summary&gt;
+    /// 切换场景前,调用该方法来清空当前场景的数据
+    /// &lt;/summary&gt;
+    public void RefreshDataOnSwitchScene() {
+        mPanelPathDictionary.Clear();
+        mPanelStack.Clear();
+    }
+</code></pre><p>如何切换场景?</p>
+<pre><code>        UIManager.Instance.RefreshDataOnSwitchScene();
+        SceneManager.LoadScene(&quot;NewScene&quot;);
+
+</code></pre><h3 id="个人博客"><a href="#个人博客" class="headerlink" title="个人博客"></a>个人博客</h3><p><a href="https://blog.csdn.net/jingangxin666" target="_blank" rel="noopener">jingangxin36</a></p>
 <h3 id="个人邮箱"><a href="#个人邮箱" class="headerlink" title="个人邮箱"></a>个人邮箱</h3><p><a href="mailto:jingangxin36@foxmail.com" target="_blank" rel="noopener">jingangxin36@foxmail.com</a></p>
 
         

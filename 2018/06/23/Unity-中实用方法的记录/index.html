@@ -482,21 +482,136 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <h2 id="获取Assets文件夹同级的目录"><a href="#获取Assets文件夹同级的目录" class="headerlink" title="获取Assets文件夹同级的目录"></a>获取Assets文件夹同级的目录</h2><p>我们要读取Assets目录同级的文件夹<code>Assets.diff</code>, 该文件夹的全路径可以这样获得:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//方法一</span><br><span class="line">DirectoryInfo topDir = Directory.GetParent(Application.dataPath);</span><br><span class="line">string diffFilePath = topDir.FullName + &quot;/&quot; + &quot;Assets.diff&quot;;</span><br><span class="line"></span><br><span class="line">//方法二</span><br><span class="line">string diffFilePath = GetParentDirectory(Application.dataPath, 1) + &quot;/&quot; + &quot;Assets.diff&quot;;</span><br></pre></td></tr></table></figure>
-<p>其中<code>diffFilePath</code>即为全路径</p>
+<pre><code>//方法一
+DirectoryInfo topDir = Directory.GetParent(Application.dataPath);
+string diffFilePath = topDir.FullName + &quot;/&quot; + &quot;Assets.diff&quot;;
+
+//方法二
+string diffFilePath = GetParentDirectory(Application.dataPath, 1) + &quot;/&quot; + &quot;Assets.diff&quot;;
+
+</code></pre><p>其中<code>diffFilePath</code>即为全路径</p>
 <p><code>GetParentDirectory</code>方法可以获得某路径的n级父目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static string GetParentDirectory(string path, int parentCount)</span><br><span class="line">&#123;</span><br><span class="line">    int index = path.Length;</span><br><span class="line">    while (parentCount &gt; 0 &amp;&amp; index &gt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">        index = path.LastIndexOf(&apos;/&apos;, index - 1, StringComparison.Ordinal);</span><br><span class="line">        --parentCount;</span><br><span class="line">    &#125;</span><br><span class="line">    if (index &lt; 0)&#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    return path.Substring(0, index);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="使用Editor进程条"><a href="#使用Editor进程条" class="headerlink" title="使用Editor进程条"></a>使用Editor进程条</h2><p>当我们执行时间比较久的进程时(例如遍历Assets目录下所有FBX资源),可以使用<a href="https://docs.unity3d.com/ScriptReference/EditorUtility.html" target="_blank" rel="noopener">EditorUtility</a> 中的进度条来展示进程执行到哪一步了. </p>
+<pre><code>    public static string GetParentDirectory(string path, int parentCount)
+    {
+        int index = path.Length;
+        while (parentCount &gt; 0 &amp;&amp; index &gt; 0)
+        {
+            index = path.LastIndexOf(&#39;/&#39;, index - 1, StringComparison.Ordinal);
+            --parentCount;
+        }
+        if (index &lt; 0){
+            return null;
+        }
+        return path.Substring(0, index);
+    }
+</code></pre><h2 id="使用Editor进程条"><a href="#使用Editor进程条" class="headerlink" title="使用Editor进程条"></a>使用Editor进程条</h2><p>当我们执行时间比较久的进程时(例如遍历Assets目录下所有FBX资源),可以使用<a href="https://docs.unity3d.com/ScriptReference/EditorUtility.html" target="_blank" rel="noopener">EditorUtility</a> 中的进度条来展示进程执行到哪一步了. </p>
 <p>具体代码记录如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//展示进度条</span><br><span class="line">EditorUtility.DisplayProgressBar(&quot;正在检查&quot;, &quot;正在获取文件列表...&quot;, 0.0f);</span><br><span class="line"></span><br><span class="line">var info = string.Format(&quot;&#123;0&#125;/&#123;1&#125;&quot;, tempCount, allCount);</span><br><span class="line">EditorUtility.DisplayProgressBar(&quot;正在检查&quot;, &quot;已检查&quot; + info, (float)tempCount / allCount);</span><br><span class="line"></span><br><span class="line">//最后一定要记得清理掉进度条, 不然它就一直留在界面上啦</span><br><span class="line">EditorUtility.ClearProgressBar();</span><br></pre></td></tr></table></figure>
-<h2 id="在编辑器的MenuBar添加按钮"><a href="#在编辑器的MenuBar添加按钮" class="headerlink" title="在编辑器的MenuBar添加按钮"></a>在编辑器的MenuBar添加按钮</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   [MenuItem(&quot;Art Tools/Mesh检查/1.检查fbx的mesh. 检查类型:【UVs &amp; Colors】&quot;)]</span><br><span class="line">   static void CheckMesh()</span><br><span class="line">   &#123;</span><br><span class="line">       _CheckMesh();</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">private static void _CheckMesh()&#123;</span><br><span class="line">	//do something</span><br></pre></td></tr></table></figure>
-<h2 id="关于地址路径的问题"><a href="#关于地址路径的问题" class="headerlink" title="关于地址路径的问题"></a>关于地址路径的问题</h2><h4 id="全路径和绝对路径"><a href="#全路径和绝对路径" class="headerlink" title="全路径和绝对路径"></a>全路径和绝对路径</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">	//searchPath 是绝对路径</span><br><span class="line">	var searchPath = Application.dataPath;</span><br><span class="line">	</span><br><span class="line">	//获取指定类型的资源</span><br><span class="line">	//得到的是相对Assets目录下的路径</span><br><span class="line">	//例如&quot;Assets\3rd\AniEditorScene\Scene0.prefab&quot;</span><br><span class="line">    public static string[] GetAllFilesNew(string dir, string searchPattern)</span><br><span class="line">    &#123;</span><br><span class="line">        var allFile = Directory.GetFiles(dir, searchPattern, SearchOption.AllDirectories);</span><br><span class="line">        return allFile;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">//需要相对路径</span><br><span class="line">//根据相对路径加载指定类型的物体</span><br><span class="line">var tempModel = AssetDatabase.LoadAssetAtPath&lt;GameObject&gt;(assetPath);</span><br></pre></td></tr></table></figure>
-<h4 id="斜杠转化为反斜杠"><a href="#斜杠转化为反斜杠" class="headerlink" title="斜杠转化为反斜杠"></a>斜杠转化为反斜杠</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//originPath为win平台产生的路径, 例如Assets\Source\Test.fbx</span><br><span class="line">var assetPath = originPath.Replace(&quot;\\&quot;, &quot;/&quot;);</span><br></pre></td></tr></table></figure>
-<h3 id="将日志打印指定文件"><a href="#将日志打印指定文件" class="headerlink" title="将日志打印指定文件"></a>将日志打印指定文件</h3><p>假设我们对模型进行资源后处理的时候, 希望看得到处理反馈, 这时可以将每一条反馈打印到指定文件中. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">    private static string _time;</span><br><span class="line">    private static bool _isInit;</span><br><span class="line">    private static string _logFilePath;</span><br><span class="line">    static void InitThings()</span><br><span class="line">    &#123;</span><br><span class="line">        _time = DateTime.Now.ToString(&quot;yyyy_MM_dd_HH_mm_ss&quot;);</span><br><span class="line">        DirectoryInfo topDir = Directory.GetParent(Application.dataPath);</span><br><span class="line">        _logFilePath = topDir.FullName + &quot;/&quot; + &quot;Log.md&quot;;</span><br><span class="line">        File.Create(_logFilePath).Dispose();</span><br><span class="line">        Log(_time);</span><br><span class="line">        _isInit = true;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void Log(string content)</span><br><span class="line">    &#123;</span><br><span class="line">        StreamWriter sw = new StreamWriter(_logFilePath, true);</span><br><span class="line">        //开始写入</span><br><span class="line">        sw.WriteLine(content);</span><br><span class="line">        //清空缓冲区</span><br><span class="line">        sw.Flush();</span><br><span class="line">        //关闭流</span><br><span class="line">        sw.Close();</span><br><span class="line">    &#125;</span><br><span class="line">    void OnPostprocessModel(GameObject input)</span><br><span class="line">    &#123;</span><br><span class="line">	    //do something</span><br><span class="line">        Log(&quot;..需要打印的内容..&quot;);</span><br><span class="line">        //do something</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//*************************************</span><br><span class="line">//批量打印, 创建目录</span><br><span class="line"></span><br><span class="line">    private static string _time;</span><br><span class="line">    private static string _logFilePath;</span><br><span class="line">    static DirectoryInfo _topDir;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    static string InitThings(string title)</span><br><span class="line">    &#123;</span><br><span class="line">        _time = DateTime.Now.ToString(&quot;yyyy_MM_dd_HH_mm_ss&quot;);</span><br><span class="line">        _topDir = Directory.GetParent(Application.dataPath);</span><br><span class="line">        _logFilePath = string.Format(&quot;&#123;0&#125;/&#123;1&#125;&#123;2&#125;.txt&quot;, _topDir.FullName, _time, title);</span><br><span class="line">        File.Create(_logFilePath).Dispose();</span><br><span class="line">        return _logFilePath;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用计时器"><a href="#使用计时器" class="headerlink" title="使用计时器"></a>使用计时器</h3><p>用于计算某个方法执行所使用的时间</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();</span><br><span class="line"></span><br><span class="line">stopwatch.Start();</span><br><span class="line"></span><br><span class="line">//do something </span><br><span class="line"></span><br><span class="line">stopwatch.Stop();</span><br><span class="line"></span><br><span class="line">Debug.LogFormat(&quot;do something took &#123;0&#125;ms&quot;, stopwatch.ElapsedMilliseconds);</span><br><span class="line"></span><br><span class="line">stopwatch.Reset();</span><br><span class="line"></span><br><span class="line">stopwatch.Start();</span><br><span class="line"></span><br><span class="line">//do something </span><br><span class="line"></span><br><span class="line">stopwatch.Stop();</span><br></pre></td></tr></table></figure>
-<h3 id="获取对资源的引用"><a href="#获取对资源的引用" class="headerlink" title="获取对资源的引用"></a>获取对资源的引用</h3><p>Unity提供了一个API:<a href="https://docs.unity3d.com/ScriptReference/AssetDatabase.GetDependencies.html" target="_blank" rel="noopener"> <code>AssetDatabase.GetDependencies</code></a> , 用于获得资源所依赖的文件, 该方法参数<code>recursive</code> 默认为<code>true</code>, 但是此时对时间的影响很大</p>
+<pre><code>//展示进度条
+EditorUtility.DisplayProgressBar(&quot;正在检查&quot;, &quot;正在获取文件列表...&quot;, 0.0f);
+
+var info = string.Format(&quot;{0}/{1}&quot;, tempCount, allCount);
+EditorUtility.DisplayProgressBar(&quot;正在检查&quot;, &quot;已检查&quot; + info, (float)tempCount / allCount);
+
+//最后一定要记得清理掉进度条, 不然它就一直留在界面上啦
+EditorUtility.ClearProgressBar();
+
+</code></pre><h2 id="在编辑器的MenuBar添加按钮"><a href="#在编辑器的MenuBar添加按钮" class="headerlink" title="在编辑器的MenuBar添加按钮"></a>在编辑器的MenuBar添加按钮</h2><pre><code>    [MenuItem(&quot;Art Tools/Mesh检查/1.检查fbx的mesh. 检查类型:【UVs &amp; Colors】&quot;)]
+    static void CheckMesh()
+    {
+        _CheckMesh();
+    }
+
+    private static void _CheckMesh(){
+        //do something
+
+</code></pre><h2 id="关于地址路径的问题"><a href="#关于地址路径的问题" class="headerlink" title="关于地址路径的问题"></a>关于地址路径的问题</h2><h4 id="全路径和绝对路径"><a href="#全路径和绝对路径" class="headerlink" title="全路径和绝对路径"></a>全路径和绝对路径</h4><pre><code>    //searchPath 是绝对路径
+    var searchPath = Application.dataPath;
+
+    //获取指定类型的资源
+    //得到的是相对Assets目录下的路径
+    //例如&quot;Assets\3rd\AniEditorScene\Scene0.prefab&quot;
+    public static string[] GetAllFilesNew(string dir, string searchPattern)
+    {
+        var allFile = Directory.GetFiles(dir, searchPattern, SearchOption.AllDirectories);
+        return allFile;
+    }
+
+
+//需要相对路径
+//根据相对路径加载指定类型的物体
+var tempModel = AssetDatabase.LoadAssetAtPath&lt;GameObject&gt;(assetPath);
+
+</code></pre><h4 id="斜杠转化为反斜杠"><a href="#斜杠转化为反斜杠" class="headerlink" title="斜杠转化为反斜杠"></a>斜杠转化为反斜杠</h4><pre><code>//originPath为win平台产生的路径, 例如Assets\Source\Test.fbx
+var assetPath = originPath.Replace(&quot;\\&quot;, &quot;/&quot;);
+
+</code></pre><h3 id="将日志打印指定文件"><a href="#将日志打印指定文件" class="headerlink" title="将日志打印指定文件"></a>将日志打印指定文件</h3><p>假设我们对模型进行资源后处理的时候, 希望看得到处理反馈, 这时可以将每一条反馈打印到指定文件中. </p>
+<pre><code>    private static string _time;
+    private static bool _isInit;
+    private static string _logFilePath;
+    static void InitThings()
+    {
+        _time = DateTime.Now.ToString(&quot;yyyy_MM_dd_HH_mm_ss&quot;);
+        DirectoryInfo topDir = Directory.GetParent(Application.dataPath);
+        _logFilePath = topDir.FullName + &quot;/&quot; + &quot;Log.md&quot;;
+        File.Create(_logFilePath).Dispose();
+        Log(_time);
+        _isInit = true;
+    }
+    public static void Log(string content)
+    {
+        StreamWriter sw = new StreamWriter(_logFilePath, true);
+        //开始写入
+        sw.WriteLine(content);
+        //清空缓冲区
+        sw.Flush();
+        //关闭流
+        sw.Close();
+    }
+    void OnPostprocessModel(GameObject input)
+    {
+        //do something
+        Log(&quot;..需要打印的内容..&quot;);
+        //do something
+    }
+
+//*************************************
+//批量打印, 创建目录
+
+    private static string _time;
+    private static string _logFilePath;
+    static DirectoryInfo _topDir;
+
+
+    static string InitThings(string title)
+    {
+        _time = DateTime.Now.ToString(&quot;yyyy_MM_dd_HH_mm_ss&quot;);
+        _topDir = Directory.GetParent(Application.dataPath);
+        _logFilePath = string.Format(&quot;{0}/{1}{2}.txt&quot;, _topDir.FullName, _time, title);
+        File.Create(_logFilePath).Dispose();
+        return _logFilePath;
+    }
+
+
+</code></pre><h3 id="使用计时器"><a href="#使用计时器" class="headerlink" title="使用计时器"></a>使用计时器</h3><p>用于计算某个方法执行所使用的时间</p>
+<pre><code>System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+
+stopwatch.Start();
+
+//do something 
+
+stopwatch.Stop();
+
+Debug.LogFormat(&quot;do something took {0}ms&quot;, stopwatch.ElapsedMilliseconds);
+
+stopwatch.Reset();
+
+stopwatch.Start();
+
+//do something 
+
+stopwatch.Stop();
+
+</code></pre><h3 id="获取对资源的引用"><a href="#获取对资源的引用" class="headerlink" title="获取对资源的引用"></a>获取对资源的引用</h3><p>Unity提供了一个API:<a href="https://docs.unity3d.com/ScriptReference/AssetDatabase.GetDependencies.html" target="_blank" rel="noopener"> <code>AssetDatabase.GetDependencies</code></a> , 用于获得资源所依赖的文件, 该方法参数<code>recursive</code> 默认为<code>true</code>, 但是此时对时间的影响很大</p>
 <p>做了个测试, 对Assets目录下的所有<code>prefab</code>查找引用, 参数<code>recursive</code> 分别为<code>true</code>和<code>false</code>, 结果如下图:</p>
 <p><img src="https://img-blog.csdn.net/20180713115212445?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmdhbmd4aW42NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
 <p>速度快了几乎15倍, 因此参数<code>recursive</code> 最好为<code>false</code>, 即查找直接引用即可. </p>

@@ -537,8 +537,19 @@
 <li><p>取消装箱将从对象中提取<strong>值类型</strong>。</p>
 </li>
 <li><p>装箱是隐式的(也可以进行显式装箱)；取消装箱是显式的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//隐式装箱</span><br><span class="line">int i = 123;</span><br><span class="line">object o = i;  </span><br><span class="line"></span><br><span class="line">//显式装箱</span><br><span class="line">int i = 123;</span><br><span class="line">object o = (object)i;  // explicit boxing</span><br><span class="line"></span><br><span class="line">//显示取消装箱</span><br><span class="line">int i = 123;      // a value type</span><br><span class="line">object o = i;     // boxing</span><br><span class="line">int j = (int)o;   // unboxing</span><br></pre></td></tr></table></figure>
-<p>​</p>
+<pre><code>//隐式装箱
+int i = 123;
+object o = i;  
+
+//显式装箱
+int i = 123;
+object o = (object)i;  // explicit boxing
+
+//显示取消装箱
+int i = 123;      // a value type
+object o = i;     // boxing
+int j = (int)o;   // unboxing
+</code></pre><p>​</p>
 </li>
 <li><p>相对于简单的赋值而言，装箱和取消装箱过程需要进行大量的计算。 对值类型进行装箱时，必须分配并构造一个新对象。 取消装箱所需的强制转换也需要进行大量的计算，只是程度较轻。</p>
 </li>
@@ -546,8 +557,87 @@
 <ul>
 <li>如何在 C# 中使用装箱。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">// String.Concat example.</span><br><span class="line">// String.Concat has many versions. Rest the mouse pointer on </span><br><span class="line">// Concat in the following statement to verify that the version</span><br><span class="line">// that is used here takes three object arguments. Both 42 and</span><br><span class="line">// true must be boxed.</span><br><span class="line">Console.WriteLine(String.Concat(&quot;Answer&quot;, 42, true));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// List example.</span><br><span class="line">// Create a list of objects to hold a heterogeneous collection </span><br><span class="line">// of elements.</span><br><span class="line">List&lt;object&gt; mixedList = new List&lt;object&gt;();</span><br><span class="line"></span><br><span class="line">// Add a string element to the list. </span><br><span class="line">mixedList.Add(&quot;First Group:&quot;);</span><br><span class="line"></span><br><span class="line">// Add some integers to the list. </span><br><span class="line">for (int j = 1; j &lt; 5; j++)</span><br><span class="line">&#123;</span><br><span class="line">    // Rest the mouse pointer over j to verify that you are adding</span><br><span class="line">    // an int to a list of objects. Each element j is boxed when </span><br><span class="line">    // you add j to mixedList.</span><br><span class="line">    mixedList.Add(j);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Add another string and more integers.</span><br><span class="line">mixedList.Add(&quot;Second Group:&quot;);</span><br><span class="line">for (int j = 5; j &lt; 10; j++)</span><br><span class="line">&#123;</span><br><span class="line">    mixedList.Add(j);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Display the elements in the list. Declare the loop variable by </span><br><span class="line">// using var, so that the compiler assigns its type.</span><br><span class="line">foreach (var item in mixedList)</span><br><span class="line">&#123;</span><br><span class="line">    // Rest the mouse pointer over item to verify that the elements</span><br><span class="line">    // of mixedList are objects.</span><br><span class="line">    Console.WriteLine(item);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// The following loop sums the squares of the first group of boxed</span><br><span class="line">// integers in mixedList. The list elements are objects, and cannot</span><br><span class="line">// be multiplied or added to the sum until they are unboxed. The</span><br><span class="line">// unboxing must be done explicitly.</span><br><span class="line">var sum = 0;</span><br><span class="line">for (var j = 1; j &lt; 5; j++)</span><br><span class="line">&#123;</span><br><span class="line">    // The following statement causes a compiler error: Operator </span><br><span class="line">    // &apos;*&apos; cannot be applied to operands of type &apos;object&apos; and</span><br><span class="line">    // &apos;object&apos;. </span><br><span class="line">    //sum += mixedList[j] * mixedList[j]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// After the list elements are unboxed, the computation does </span><br><span class="line">// not cause a compiler error.</span><br><span class="line">sum += (int)mixedList[j] * (int)mixedList[j];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// The sum displayed is 30, the sum of 1 + 4 + 9 + 16.</span><br><span class="line">Console.WriteLine(&quot;Sum: &quot; + sum);</span><br><span class="line"></span><br><span class="line">// Output:</span><br><span class="line">// Answer42True</span><br><span class="line">// First Group:</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// 4</span><br><span class="line">// Second Group:</span><br><span class="line">// 5</span><br><span class="line">// 6</span><br><span class="line">// 7</span><br><span class="line">// 8</span><br><span class="line">// 9</span><br><span class="line">// Sum: 30</span><br></pre></td></tr></table></figure>
-<p><strong>装箱拆箱示意图:</strong><br><img src="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/types/media/vcunboxingconversion.gif" alt="装箱"></p>
+<pre><code>  // String.Concat example.
+  // String.Concat has many versions. Rest the mouse pointer on 
+  // Concat in the following statement to verify that the version
+  // that is used here takes three object arguments. Both 42 and
+  // true must be boxed.
+  Console.WriteLine(String.Concat(&quot;Answer&quot;, 42, true));
+
+
+  // List example.
+  // Create a list of objects to hold a heterogeneous collection 
+  // of elements.
+  List&lt;object&gt; mixedList = new List&lt;object&gt;();
+
+  // Add a string element to the list. 
+  mixedList.Add(&quot;First Group:&quot;);
+
+  // Add some integers to the list. 
+  for (int j = 1; j &lt; 5; j++)
+  {
+      // Rest the mouse pointer over j to verify that you are adding
+      // an int to a list of objects. Each element j is boxed when 
+      // you add j to mixedList.
+      mixedList.Add(j);
+  }
+
+  // Add another string and more integers.
+  mixedList.Add(&quot;Second Group:&quot;);
+  for (int j = 5; j &lt; 10; j++)
+  {
+      mixedList.Add(j);
+  }
+
+  // Display the elements in the list. Declare the loop variable by 
+  // using var, so that the compiler assigns its type.
+  foreach (var item in mixedList)
+  {
+      // Rest the mouse pointer over item to verify that the elements
+      // of mixedList are objects.
+      Console.WriteLine(item);
+  }
+
+  // The following loop sums the squares of the first group of boxed
+  // integers in mixedList. The list elements are objects, and cannot
+  // be multiplied or added to the sum until they are unboxed. The
+  // unboxing must be done explicitly.
+  var sum = 0;
+  for (var j = 1; j &lt; 5; j++)
+  {
+      // The following statement causes a compiler error: Operator 
+      // &#39;*&#39; cannot be applied to operands of type &#39;object&#39; and
+      // &#39;object&#39;. 
+      //sum += mixedList[j] * mixedList[j]);
+
+
+  // After the list elements are unboxed, the computation does 
+  // not cause a compiler error.
+  sum += (int)mixedList[j] * (int)mixedList[j];
+
+
+
+  }
+
+  // The sum displayed is 30, the sum of 1 + 4 + 9 + 16.
+  Console.WriteLine(&quot;Sum: &quot; + sum);
+
+  // Output:
+  // Answer42True
+  // First Group:
+  // 1
+  // 2
+  // 3
+  // 4
+  // Second Group:
+  // 5
+  // 6
+  // 7
+  // 8
+  // 9
+  // Sum: 30
+
+</code></pre><p><strong>装箱拆箱示意图:</strong><br><img src="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/types/media/vcunboxingconversion.gif" alt="装箱"></p>
 <p><a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/types/boxing-and-unboxing" target="_blank" rel="noopener">图片来源</a></p>
 <h3 id="一个类Class-A-要当作Dictionary-lt-TKey-TValue-gt-中的TKey-应该重写什么方法"><a href="#一个类Class-A-要当作Dictionary-lt-TKey-TValue-gt-中的TKey-应该重写什么方法" class="headerlink" title="一个类Class A , 要当作Dictionary&lt;TKey, TValue&gt;中的TKey, 应该重写什么方法?"></a>一个类Class A , 要当作<code>Dictionary&lt;TKey, TValue&gt;</code>中的<code>TKey</code>, 应该重写什么方法?</h3><ul>
 <li><p><strong>参考答案:</strong></p>
@@ -573,12 +663,70 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">public class Example</span><br><span class="line">&#123;</span><br><span class="line">   public static void Main()</span><br><span class="line">   &#123;</span><br><span class="line">      byte value1 = 12;</span><br><span class="line">      int value2 = 12;</span><br><span class="line"></span><br><span class="line">      object object1 = value1;</span><br><span class="line">      object object2 = value2;</span><br><span class="line"></span><br><span class="line">      Console.WriteLine(&quot;&#123;0&#125; (&#123;1&#125;) = &#123;2&#125; (&#123;3&#125;): &#123;4&#125;&quot;,</span><br><span class="line">                        object1, object1.GetType().Name,</span><br><span class="line">                        object2, object2.GetType().Name,</span><br><span class="line">                        object1.Equals(object2));</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">// The example displays the following output:</span><br><span class="line">//        12 (Byte) = 12 (Int32): False</span><br></pre></td></tr></table></figure>
-<ul>
+<pre><code>  using System;
+
+  public class Example
+  {
+     public static void Main()
+     {
+        byte value1 = 12;
+        int value2 = 12;
+
+        object object1 = value1;
+        object object2 = value2;
+
+        Console.WriteLine(&quot;{0} ({1}) = {2} ({3}): {4}&quot;,
+                          object1, object1.GetType().Name,
+                          object2, object2.GetType().Name,
+                          object1.Equals(object2));
+     }
+  }
+  // The example displays the following output:
+  //        12 (Byte) = 12 (Int32): False
+
+</code></pre><ul>
 <li>2.<strong>两个对象的公共和私有字段的值相等。</strong>下面的示例测试的值相等。 它定义<strong>Person结构</strong>，这是<strong>值类型</strong>，并调用构造函数来实例化两个新Person对象，person1和person2，其中具有相同的值。 如示例输出所示，虽然两个对象变量引用不同的对象，但person1和person2是否相等的因为它们具有相同的值为私有personName字段。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">// Define a value type that does not override Equals.</span><br><span class="line">public struct Person</span><br><span class="line">&#123;</span><br><span class="line">   private string personName;</span><br><span class="line"></span><br><span class="line">   public Person(string name)</span><br><span class="line">   &#123;</span><br><span class="line">      this.personName = name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public override string ToString()</span><br><span class="line">   &#123;</span><br><span class="line">      return this.personName;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public struct Example</span><br><span class="line">&#123;</span><br><span class="line">   public static void Main()</span><br><span class="line">   &#123;</span><br><span class="line">      Person person1 = new Person(&quot;John&quot;);</span><br><span class="line">      Person person2 = new Person(&quot;John&quot;);</span><br><span class="line"></span><br><span class="line">      Console.WriteLine(&quot;Calling Equals:&quot;); </span><br><span class="line">      Console.WriteLine(person1.Equals(person2)); </span><br><span class="line"></span><br><span class="line">      Console.WriteLine(&quot;\nCasting to an Object and calling Equals:&quot;);</span><br><span class="line">      Console.WriteLine(((object) person1).Equals((object) person2));  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">// The example displays the following output:</span><br><span class="line">//       Calling Equals:</span><br><span class="line">//       True</span><br><span class="line">//       </span><br><span class="line">//       Casting to an Object and calling Equals:</span><br><span class="line">//       True</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
-<h3 id="Interface和抽象类的区别"><a href="#Interface和抽象类的区别" class="headerlink" title="Interface和抽象类的区别"></a>Interface和抽象类的区别</h3><p><a href="https://www.jianshu.com/p/7cc06e2fae96" target="_blank" rel="noopener">C#中的抽象类（abstract class）和接口（interface）的比较:</a></p>
+<pre><code>  using System;
+
+  // Define a value type that does not override Equals.
+  public struct Person
+  {
+     private string personName;
+
+     public Person(string name)
+     {
+        this.personName = name;
+     }
+
+     public override string ToString()
+     {
+        return this.personName;
+     }
+  }
+
+  public struct Example
+  {
+     public static void Main()
+     {
+        Person person1 = new Person(&quot;John&quot;);
+        Person person2 = new Person(&quot;John&quot;);
+
+        Console.WriteLine(&quot;Calling Equals:&quot;); 
+        Console.WriteLine(person1.Equals(person2)); 
+
+        Console.WriteLine(&quot;\nCasting to an Object and calling Equals:&quot;);
+        Console.WriteLine(((object) person1).Equals((object) person2));  
+     }
+  }
+  // The example displays the following output:
+  //       Calling Equals:
+  //       True
+  //       
+  //       Casting to an Object and calling Equals:
+  //       True
+  ​
+</code></pre><h3 id="Interface和抽象类的区别"><a href="#Interface和抽象类的区别" class="headerlink" title="Interface和抽象类的区别"></a>Interface和抽象类的区别</h3><p><a href="https://www.jianshu.com/p/7cc06e2fae96" target="_blank" rel="noopener">C#中的抽象类（abstract class）和接口（interface）的比较:</a></p>
 <ul>
 <li>抽象类是一个不完整的类，需要进一步细化；接口只是一个行为的规范或规定。</li>
 <li>抽象基类可以定义字段、属性和方法实现；接口只能定义属性、索引器、事件和方法声明，不能包含字段。</li>

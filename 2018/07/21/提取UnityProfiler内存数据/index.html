@@ -518,7 +518,28 @@
 </ul>
 <h4 id="如何提取该数据"><a href="#如何提取该数据" class="headerlink" title="如何提取该数据"></a>如何提取该数据</h4><p>此工具利用反射原理, 通过递归遍历<code>MemoryElement.children</code>来提取我们所需的数据结构<code>totalMemory</code>,<code>name</code>, <code>totalMemory</code>存入自定义类<code>MemoryElement</code>, 同时增加字段<code>_depth</code>来记录该内存对象的深度, 方便数据过滤</p>
 <p>关键代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static MemoryElement Create(Dynamic srcMemoryElement, int depth, int filterDepth, float filterSize)</span><br><span class="line">&#123;</span><br><span class="line">    if (srcMemoryElement == null) return null;</span><br><span class="line">    var dstMemoryElement = new MemoryElement &#123; _depth = depth &#125;;</span><br><span class="line">    Dynamic.CopyFrom(dstMemoryElement, srcMemoryElement.InnerObject,</span><br><span class="line">        BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetField);</span><br><span class="line"></span><br><span class="line">    var srcChildren = srcMemoryElement.PublicInstanceField&lt;IList&gt;(&quot;children&quot;);</span><br><span class="line">    if (srcChildren == null) return dstMemoryElement;</span><br><span class="line">    foreach (var srcChild in srcChildren)</span><br><span class="line">    &#123;</span><br><span class="line">        var memoryElement = Create(new Dynamic(srcChild), depth + 1, filterDepth, filterSize);</span><br><span class="line">        if (memoryElement == null) continue;</span><br><span class="line">        if (depth &gt; filterDepth) continue;</span><br><span class="line">        if (!(memoryElement.totalMemory &gt;= filterSize)) continue;</span><br><span class="line">        dstMemoryElement.children.Add(memoryElement);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dstMemoryElement.children.Sort();</span><br><span class="line">    return dstMemoryElement;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="c#">    public static MemoryElement Create(Dynamic srcMemoryElement, int depth, int filterDepth, float filterSize)
+    {
+        if (srcMemoryElement == null) return null;
+        var dstMemoryElement = new MemoryElement { _depth = depth };
+        Dynamic.CopyFrom(dstMemoryElement, srcMemoryElement.InnerObject,
+            BindingFlags.Instance | BindingFlags.Public | BindingFlags.GetField);
+
+        var srcChildren = srcMemoryElement.PublicInstanceField&lt;IList&gt;(&quot;children&quot;);
+        if (srcChildren == null) return dstMemoryElement;
+        foreach (var srcChild in srcChildren)
+        {
+            var memoryElement = Create(new Dynamic(srcChild), depth + 1, filterDepth, filterSize);
+            if (memoryElement == null) continue;
+            if (depth &gt; filterDepth) continue;
+            if (!(memoryElement.totalMemory &gt;= filterSize)) continue;
+            dstMemoryElement.children.Add(memoryElement);
+        }
+
+        dstMemoryElement.children.Sort();
+        return dstMemoryElement;
+    }
+</code></pre>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
 <li><a href="https://www.jianshu.com/p/5674e96f2b8e" target="_blank" rel="noopener">Unity Editor 提取Profiler数据 - Memory</a></li>
 </ul>
