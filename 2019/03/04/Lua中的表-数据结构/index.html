@@ -45,7 +45,7 @@
     
     <title>
         
-            Lua实现继承方法和原理 | 
+            Lua中的表-数据结构 | 
         
         jingangxin36 | Lee Young
     </title>
@@ -222,7 +222,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="jingangxin36 | Lee Young">
-    <meta name="msapplication-starturl" content="https://jingangxin36.github.io/2019/03/03/Lua实现继承方法和原理/">
+    <meta name="msapplication-starturl" content="https://jingangxin36.github.io/2019/03/04/Lua中的表-数据结构/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="jingangxin36 | Lee Young">
@@ -237,16 +237,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://jingangxin36.github.io/2019/03/03/Lua实现继承方法和原理/">
+    <meta property="og:url" content="https://jingangxin36.github.io/2019/03/04/Lua中的表-数据结构/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Lua实现继承方法和原理 | jingangxin36 | Lee Young">
+    <meta property="og:title" content="Lua中的表-数据结构 | jingangxin36 | Lee Young">
     <meta property="og:image" content="/img/avatar.jpg">
     <meta property="og:description" content="以大多数人的努力程度之低，根本轮不到拼天赋">
     <meta property="og:article:tag" content="Lua"> 
 
     
-        <meta property="article:published_time" content="Sun Mar 03 2019 16:49:04 GMT+0800">
-        <meta property="article:modified_time" content="Sun Mar 03 2019 16:51:36 GMT+0800">
+        <meta property="article:published_time" content="Mon Mar 04 2019 15:32:35 GMT+0800">
+        <meta property="article:modified_time" content="Mon Mar 04 2019 16:33:49 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -254,7 +254,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://jingangxin36.github.io/2019/03/03/Lua实现继承方法和原理/index.html" />
+        <link rel="canonical" href="https://jingangxin36.github.io/2019/03/04/Lua中的表-数据结构/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -266,10 +266,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://jingangxin36.github.io/2019/03/03/Lua实现继承方法和原理/index.html",
-    "headline": "Lua实现继承方法和原理",
-    "datePublished": "Sun Mar 03 2019 16:49:04 GMT+0800",
-    "dateModified": "Sun Mar 03 2019 16:51:36 GMT+0800",
+    "mainEntityOfPage": "https://jingangxin36.github.io/2019/03/04/Lua中的表-数据结构/index.html",
+    "headline": "Lua中的表-数据结构",
+    "datePublished": "Mon Mar 04 2019 15:32:35 GMT+0800",
+    "dateModified": "Mon Mar 04 2019 16:33:49 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Lee Young",
@@ -347,6 +347,15 @@
     <!-- Left aligned menu below button -->
     
     
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Lua的数据结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">Lua的数据结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#成员含义"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">成员含义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于lsizenode的细节"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">关于lsizenode的细节</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于flags的细节"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">关于flags的细节</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ltm-h中的元方法bit定义"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">ltm.h中的元方法bit定义</span></a></li></ol></li></ol></li></ol>
+    </ul>
+    
 
 
 
@@ -376,7 +385,7 @@
         
     
             <p class="article-headline-p">
-                Lua实现继承方法和原理
+                Lua中的表-数据结构
             </p>
         </div>
 
@@ -395,7 +404,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Lee Young</strong>
-        <span>3月 03, 2019</span>
+        <span>3月 04, 2019</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -447,7 +456,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Lua实现继承方法和原理&url=https://jingangxin36.github.io/2019/03/03/Lua实现继承方法和原理/index.html&pic=https://jingangxin36.github.io/img/avatar.jpg&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Lua中的表-数据结构&url=https://jingangxin36.github.io/2019/03/04/Lua中的表-数据结构/index.html&pic=https://jingangxin36.github.io/img/avatar.jpg&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -456,7 +465,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Lua实现继承方法和原理&url=https://jingangxin36.github.io/2019/03/03/Lua实现继承方法和原理/index.html&via=Lee Young" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Lua中的表-数据结构&url=https://jingangxin36.github.io/2019/03/04/Lua中的表-数据结构/index.html&via=Lee Young" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -465,7 +474,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://jingangxin36.github.io/2019/03/03/Lua实现继承方法和原理/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://jingangxin36.github.io/2019/03/04/Lua中的表-数据结构/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -474,7 +483,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://jingangxin36.github.io/2019/03/03/Lua实现继承方法和原理/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://jingangxin36.github.io/2019/03/04/Lua中的表-数据结构/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -499,12 +508,70 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>原理 👉 查找表元表的三个步骤:</p>
-<ol>
-<li>在表中查找，如果找到，返回该元素，找不到则继续</li>
-<li>判断该表是否有元表，如果没有元表，返回nil，有元表则继续</li>
-<li>判断元表有没有 <code>__index</code> 方法，如果 <code>__index</code> 方法为nil，则返回nil；如果<code>__index</code> 方法是一个表，则重复1、2、3；如果 <code>__index</code> 方法是一个函数，则返回该函数的返回值</li>
-</ol>
+        <p>使用表来统一表示Lua中的一切数据, 是Lua区分于其他语言的一个特色. </p>
+<p>Lua表分为数组和散列表部分, 其中数组部分不像其他语言那样, 从0开始作为第一个索引, 而是从1开始. </p>
+<p><strong>散列表部分可以存储任何其他不能存放在数组部分的数据</strong>(比如nil, 空值), 唯一的要求就是<strong>键值不能为nil</strong>. 使用Lua表, 可以模拟出其他各种数据结构—数组、链表、树等. </p>
+<p>虽然Lua的设计上简洁, 并且对使用者更加透明, 友好, 但是如果使用不当.还会造成效率性能上的差异. </p>
+<h2 id="Lua的数据结构"><a href="#Lua的数据结构" class="headerlink" title="Lua的数据结构"></a>Lua的数据结构</h2><pre><code class="c">typedef struct Table {
+  CommonHeader;
+  lu_byte flags;  /* 1&lt;&lt;p means tagmethod(p) is not present */
+  lu_byte lsizenode;  /* log2 of size of &#39;node&#39; array */
+  unsigned int sizearray;  /* size of &#39;array&#39; array */
+  TValue *array;  /* array part */
+  Node *node;
+  Node *lastfree;  /* any free position is before this position */
+  struct Table *metatable;
+  GCObject *gclist;
+} Table;
+</code></pre>
+<h3 id="成员含义"><a href="#成员含义" class="headerlink" title="成员含义"></a>成员含义</h3><ul>
+<li><code>lu_byte flags</code> : 用于表示这个表中提供了哪些元方法.  </li>
+<li><code>lu_byte lsizenode</code> : 该表中以2为底的散列表大小的对数值. </li>
+<li><code>struct Table  *metatable</code> : 存放该表的元表.  </li>
+<li><code>TValue *array</code> : 指向数组部分的指针.  </li>
+<li><code>Node *node</code>: 指向该表的散列桶数组起始位置的指针.  </li>
+<li><code>Node *lastfree</code> :  指向该表散列桶数组的最后位置的指针.  </li>
+<li><code>GCObject *gclist</code> :  GC相关的链表</li>
+<li><code>int sizearray</code> :  数组部分的大小</li>
+</ul>
+<h3 id="关于lsizenode的细节"><a href="#关于lsizenode的细节" class="headerlink" title="关于lsizenode的细节"></a>关于<code>lsizenode</code>的细节</h3><ul>
+<li>散列表的大小为2的幂. 需要扩充散列桶数组的话, 以在原先大小的基础上乘2的形式扩展</li>
+<li>使用 byte 类型, 散列值相同的数据会以链表的形式串起来</li>
+<li>原散列表的大小是以2为底的对数, 还原原先的数据, 只需要移位操作, 速度很快</li>
+</ul>
+<h3 id="关于flags的细节"><a href="#关于flags的细节" class="headerlink" title="关于flags的细节"></a>关于<code>flags</code>的细节</h3><ul>
+<li>最开始这个flags是空的, 也就是0 </li>
+<li>当查找一次之后, 如果该表中存在某个元方法, 那么将该元方法对应的flag bit 置为1, 这样下一次查找时只需要比较这个bit就行了 . </li>
+<li>每个元方法对应的bit定义在ltm.h文件中 .  </li>
+</ul>
+<h4 id="ltm-h中的元方法bit定义"><a href="#ltm-h中的元方法bit定义" class="headerlink" title="ltm.h中的元方法bit定义"></a>ltm.h中的元方法bit定义</h4><pre><code class="c">typedef enum {
+  TM_INDEX,
+  TM_NEWINDEX,
+  TM_GC,
+  TM_MODE,
+  TM_LEN,
+  TM_EQ,  /* last tag method with fast access */
+  TM_ADD,
+  TM_SUB,
+  TM_MUL,
+  TM_MOD,
+  TM_POW,
+  TM_DIV,
+  TM_IDIV,
+  TM_BAND,
+  TM_BOR,
+  TM_BXOR,
+  TM_SHL,
+  TM_SHR,
+  TM_UNM,
+  TM_BNOT,
+  TM_LT,
+  TM_LE,
+  TM_CONCAT,
+  TM_CALL,
+  TM_N        /* number of elements in the enum */
+} TMS;
+</code></pre>
 
         
     
@@ -525,19 +592,19 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2019/03/03/lEEyOUNG的分享/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2019/03/04/Lua中的表操作-取长度/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
