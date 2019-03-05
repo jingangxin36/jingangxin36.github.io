@@ -246,7 +246,7 @@
 
     
         <meta property="article:published_time" content="Mon Mar 04 2019 15:32:35 GMT+0800">
-        <meta property="article:modified_time" content="Mon Mar 04 2019 16:33:49 GMT+0800">
+        <meta property="article:modified_time" content="Tue Mar 05 2019 09:46:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -269,7 +269,7 @@
     "mainEntityOfPage": "https://jingangxin36.github.io/2019/03/04/Lua中的表-数据结构/index.html",
     "headline": "Lua中的表-数据结构",
     "datePublished": "Mon Mar 04 2019 15:32:35 GMT+0800",
-    "dateModified": "Mon Mar 04 2019 16:33:49 GMT+0800",
+    "dateModified": "Tue Mar 05 2019 09:46:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Lee Young",
@@ -510,7 +510,8 @@
     
         <p>使用表来统一表示Lua中的一切数据, 是Lua区分于其他语言的一个特色. </p>
 <p>Lua表分为数组和散列表部分, 其中数组部分不像其他语言那样, 从0开始作为第一个索引, 而是从1开始. </p>
-<p><strong>散列表部分可以存储任何其他不能存放在数组部分的数据</strong>(比如nil, 空值), 唯一的要求就是<strong>键值不能为nil</strong>. 使用Lua表, 可以模拟出其他各种数据结构—数组、链表、树等. </p>
+<p><strong>散列表部分可以存储任何其他不能存放在数组部分的数据</strong>(比如nil, 空值), 唯一的要求就是<strong>键值不能为nil</strong>. </p>
+<p>使用Lua表, 可以模拟出其他各种数据结构—数组、链表、树等. </p>
 <p>虽然Lua的设计上简洁, 并且对使用者更加透明, 友好, 但是如果使用不当.还会造成效率性能上的差异. </p>
 <h2 id="Lua的数据结构"><a href="#Lua的数据结构" class="headerlink" title="Lua的数据结构"></a>Lua的数据结构</h2><pre><code class="c">typedef struct Table {
   CommonHeader;
